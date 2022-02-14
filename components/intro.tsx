@@ -1,6 +1,7 @@
 import Button from './button'
-import ButtonNoBorder from './button-no-border'
+import ButtonSM from './button-sm'
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import {
   faHouseChimney,
   faMoon,
@@ -8,6 +9,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 const Intro = () => {
+  const router = useRouter()
+
   const darkModeUpdate = () => {
     if (localStorage.dark === 'false') {
       document.documentElement.classList.add('dark')
@@ -18,42 +21,64 @@ const Intro = () => {
     }
   }
 
+  const routerPush = (url: string) => {
+    router.push(url)
+  }
+
   useEffect(() => {
     localStorage.dark = false
   }, [])
 
   return (
-    <div className="w-full fixed flex flex-row flex-wrap p-6 justify-between text-black dark:text-white items-center border-b-2">
-      <h1 className="font-black text-2xl duration-300 md:text-5xl">
-        Alpha Blog.
-      </h1>
+    <div
+      className="w-full fixed flex flex-row flex-wrap p-2 md:p-6 justify-between
+               text-black dark:text-white items-center border-b-2 backdrop-filter
+                 backdrop-blur"
+    >
+      <h1 className="font-black text-2xl md:text-5xl">Alpha Blog.</h1>
       <div className="felx-row flex-wrap justify-end hidden md:flex">
-        <Button className="ml-4" icon={{ icon: faHouseChimney, size: 'sm' }}>
+        <Button
+          className="ml-4"
+          icon={{ icon: faHouseChimney, size: 'sm' }}
+          click={routerPush}
+          clickProps={['/']}
+        >
           主页
         </Button>
-        <Button className="ml-4" icon={{ icon: faHeart, size: 'sm' }}>
+        <Button
+          className="ml-4"
+          icon={{ icon: faHeart, size: 'sm' }}
+          click={routerPush}
+          clickProps={['/blog']}
+        >
           博客
         </Button>
         <Button
           className="ml-4"
           icon={{ icon: faMoon, size: 'sm' }}
           click={darkModeUpdate}
-        ></Button>
+        >
+          深色
+        </Button>
       </div>
       <div className="flex md:hidden">
-        <ButtonNoBorder
+        <ButtonSM
           className="ml-2"
           icon={{ icon: faHouseChimney, size: 'sm' }}
-        ></ButtonNoBorder>
-        <ButtonNoBorder
+          click={routerPush}
+          clickProps={['/']}
+        ></ButtonSM>
+        <ButtonSM
           className="ml-2"
           icon={{ icon: faHeart, size: 'sm' }}
-        ></ButtonNoBorder>
-        <ButtonNoBorder
+          click={routerPush}
+          clickProps={['/blog']}
+        ></ButtonSM>
+        <ButtonSM
           className="ml-2"
           icon={{ icon: faMoon, size: 'sm' }}
           click={darkModeUpdate}
-        ></ButtonNoBorder>
+        ></ButtonSM>
       </div>
     </div>
   )
