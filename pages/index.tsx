@@ -1,25 +1,32 @@
 import Layout from '../components/layout'
-import Container from '../components/container'
-import Post from '../types/post'
+import Intro from '../components/intro'
+import { getAllPost } from '../lib/api'
+import PostType from '../types/post'
 import Head from 'next/head'
 
 type Props = {
-  allPosts: Post[]
+  allPosts: PostType[]
 }
 
-const Index = () => {
+const Index = (props: Props) => {
   return (
     <>
       <Layout>
         <Head>
           <title>alpha-blog</title>
         </Head>
-        <Container>
-          <div className="text-base">Container</div>
-        </Container>
+        <Intro />
       </Layout>
     </>
   )
 }
 
 export default Index
+
+export const getStaticProps = async () => {
+  const allPosts = await getAllPost()
+
+  return {
+    props: { allPosts },
+  }
+}
