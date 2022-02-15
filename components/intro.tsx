@@ -32,8 +32,8 @@ const Intro = () => {
   return (
     <div
       className="w-full fixed flex flex-row flex-wrap p-2 md:p-6 justify-between
-               text-black dark:text-white items-center border-b-2 backdrop-filter
-                 backdrop-blur"
+                 text-black dark:text-white items-center shadow-md backdrop-filter
+                 backdrop-blur z-50 border-b-2 border-black dark:border-white"
     >
       <h1 className="font-black text-2xl md:text-5xl">Alpha Blog.</h1>
       <div className="felx-row flex-wrap justify-end hidden md:flex">

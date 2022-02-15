@@ -15,6 +15,6 @@ module.exports = {
       yellow: colors.amber,
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
   darkMode: 'class',
 }
