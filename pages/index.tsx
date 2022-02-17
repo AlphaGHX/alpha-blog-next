@@ -1,11 +1,11 @@
 import Layout from '../components/layout'
 import Intro from '../components/intro'
 import Home from '../components/home'
-import PostType from '../types/post'
+import PostList from '../types/post'
 import Head from 'next/head'
 
 type Props = {
-  allPosts: PostType[]
+  allPosts: PostList[]
 }
 
 const Index = (props: Props) => {

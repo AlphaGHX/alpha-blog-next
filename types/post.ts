@@ -1,8 +1,10 @@
-type PostType = {
-  title: string
-  text: string
-  imgSrc: string
-  contentSrc: string
+export type PostList = {
+  list: PostType[]
 }
 
-export default PostType
+export type PostType = {
+  id: string
+  title: string
+  text: string
+  topImg: string
+}

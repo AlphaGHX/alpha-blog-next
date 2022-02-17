@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['ultramunch.com','konachan.com'],
+    domains: ['localhost'],
     formats: ['image/avif', 'image/webp'],
   },
 }

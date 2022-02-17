@@ -2,12 +2,12 @@ import Layout from '../../components/layout'
 import Intro from '../../components/intro'
 import BlogList from '../../components/blog-list'
 import Container from '../../components/container'
-import { getAllPost } from '../../lib/api'
-import PostType from '../../types/post'
+import { getBlogList } from '../../lib/api'
+import { PostList } from '../../types/post'
 import Head from 'next/head'
 
 type Props = {
-  allPosts: PostType[]
+  allPosts: PostList
 }
 
 const Blog = ({ allPosts }: Props) => {
@@ -29,7 +29,7 @@ const Blog = ({ allPosts }: Props) => {
 export default Blog
 
 export const getServerSideProps = async () => {
-  const allPosts = await getAllPost()
+  const allPosts = await getBlogList()
 
   return {
     props: { allPosts },
