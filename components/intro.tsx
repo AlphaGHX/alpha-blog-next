@@ -32,11 +32,13 @@ const Intro = () => {
   return (
     <div
       className="fixed flex flex-row flex-wrap justify-between items-center
-                 w-full p-2 md:p-6 z-50 text-black backdrop-filter
-                 backdrop-blur border-b-2 border-black
-               dark:text-white shadow-md dark:border-white"
+                w-full p-2 md:p-6 z-50 text-main-text backdrop-filter
+                backdrop-blur border-b-2 border-main-text
+              bg-bg-blur dark:bg-bg-blur-dark
+              dark:text-main-text-dark shadow-md dark:border-main-text-dark
+                duration-300"
     >
-      <h1 className="font-black text-2xl md:text-5xl">Alpha Blog.</h1>
+      <h1 className="font-main-text text-2xl md:text-5xl font-bold">Alpha Blog.</h1>
       <div className="felx-row flex-wrap justify-end hidden md:flex">
         <Button
           className="ml-4"

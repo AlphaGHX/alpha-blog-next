@@ -13,6 +13,12 @@ module.exports = {
       indigo: colors.indigo,
       red: colors.rose,
       yellow: colors.amber,
+      'main-text': '#334155',
+      'main-text-dark': '#cbd5e1',
+      'bg-blur': '#f1f5f9cc',
+      'bg-blur-dark': '#334155cc',
+      'bg-blur-blogtitle': '#334155aa',
+      'bg-main': '#f1f5f9',
     },
   },
   plugins: [

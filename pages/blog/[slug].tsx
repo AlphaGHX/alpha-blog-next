@@ -1,12 +1,11 @@
 import Layout from '../../components/layout'
 import Intro from '../../components/intro'
 import Container from '../../components/container'
+import Blog from '../../components/blog'
 import { getBlog, getBlogInfo } from '../../lib/api'
-import { REMOTE } from '../../lib/constants'
-import markdownToHtml from '../../lib/markdown2Html'
 import { PostType } from '../../types/post'
+import markdownToHtml from '../../lib/markdown2Html'
 import Head from 'next/head'
-import Image from 'next/image'
 
 type Props = {
   rawHtml: string
@@ -18,31 +17,11 @@ const Post = ({ rawHtml, blogInfo }: Props) => {
     <>
       <Layout>
         <Head>
-          <title>{blogInfo.id}</title>
+          <title>{blogInfo.Name}</title>
         </Head>
         <Intro />
         <Container>
-          <div
-            className="flex flex-col
-                      max-w-screen-lg mx-auto mt-10 w-11/12 border-black border-2
-                      md:w-4/5 dark:border-white
-                      shadow-md rounded-3xl overflow-hidden relative"
-          >
-            <div className="h-44 sm:h-72 md:h-96 relative">
-              <Image
-                layout="fill"
-                src={REMOTE.ROOT + '/system/list/img/' + blogInfo.id}
-                alt="blog-item-img"
-                objectFit="cover"
-              ></Image>
-            </div>
-            <div className="m-2 sm:m-5">
-              <article
-                className="prose dark:prose-invert lg:prose-base max-w-none"
-                dangerouslySetInnerHTML={{ __html: rawHtml }}
-              ></article>
-            </div>
-          </div>
+          <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
         </Container>
       </Layout>
     </>

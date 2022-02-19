@@ -3,8 +3,11 @@ export type PostList = {
 }
 
 export type PostType = {
-  id: string
-  title: string
-  text: string
-  topImg: string
+  ID: number
+  CreatedAt: string
+  UpdatedAt: string
+  DeletedAt: string
+  Name: string
+  Title: string
+  Text: string
 }
