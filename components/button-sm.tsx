@@ -16,8 +16,9 @@ const ButtonSM = ({ icon, className, children, click, clickProps }: Props) => {
   return (
     <div className={className}>
       <button
-        className="rounded-full border-2 border-main-text px-3 dark:border-main-text-dark shadow-md
-                   hover:shadow-lg active:scale-95  text-base"
+        className="rounded-full px-3 shadow-main-small
+        shadow-main-shadow dark:shadow-main-shadow-dark
+        hover:scale-105 active:scale-95  text-base"
         onClick={
           click &&
           (() => {

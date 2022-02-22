@@ -1,15 +1,16 @@
-import Layout from '../../components/layout'
-import Intro from '../../components/intro'
-import Container from '../../components/container'
 import Blog from '../../components/blog'
+import Intro from '../../components/intro'
+import Layout from '../../components/layout'
+import Container from '../../components/container'
+import ErrorPage from '../../components/error-page'
 import { getBlog, getBlogInfo } from '../../lib/api'
-import { PostType } from '../../types/post'
+import { ResponseType, BlogInfoType } from '../../types/post'
 import markdownToHtml from '../../lib/markdown2Html'
 import Head from 'next/head'
 
 type Props = {
   rawHtml: string
-  blogInfo: PostType
+  blogInfo: ResponseType<BlogInfoType>
 }
 
 const Post = ({ rawHtml, blogInfo }: Props) => {
@@ -17,11 +18,15 @@ const Post = ({ rawHtml, blogInfo }: Props) => {
     <>
       <Layout>
         <Head>
-          <title>{blogInfo.Name}</title>
+          <title>{blogInfo.data.name}</title>
         </Head>
         <Intro />
         <Container>
-          <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
+          {blogInfo.code === 0 ? (
+            <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
+          ) : (
+            <ErrorPage error={blogInfo.data} msg={blogInfo.msg} />
+          )}
         </Container>
       </Layout>
     </>

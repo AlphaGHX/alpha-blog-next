@@ -1,14 +1,9 @@
 import Layout from '../components/layout'
 import Intro from '../components/intro'
 import Home from '../components/home'
-import PostList from '../types/post'
 import Head from 'next/head'
 
-type Props = {
-  allPosts: PostList[]
-}
-
-const Index = (props: Props) => {
+const Index = () => {
   return (
     <>
       <Layout>
@@ -23,4 +18,3 @@ const Index = (props: Props) => {
 }
 
 export default Index
-

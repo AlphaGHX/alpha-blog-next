@@ -2,15 +2,16 @@ import Layout from '../../components/layout'
 import Intro from '../../components/intro'
 import BlogList from '../../components/blog-list'
 import Container from '../../components/container'
+import ErrorPage from '../../components/error-page'
 import { getBlogList } from '../../lib/api'
-import { PostList } from '../../types/post'
+import { BlogListType, ResponseType } from '../../types/post'
 import Head from 'next/head'
 
 type Props = {
-  allPosts: PostList
+  blogList: ResponseType<BlogListType>
 }
 
-const Blog = ({ allPosts }: Props) => {
+const Blog = ({ blogList }: Props) => {
   return (
     <>
       <Layout>
@@ -19,7 +20,17 @@ const Blog = ({ allPosts }: Props) => {
         </Head>
         <Intro />
         <Container>
-          <BlogList allPosts={allPosts} />
+          <div
+            className="font-main-text text-2xl mb-4 md:mb-10
+            md:text-5xl font-bold text-main-text dark:text-main-text-dark"
+          >
+            所有博客。
+          </div>
+          {blogList.code === 0 ? (
+            <BlogList blogList={blogList} />
+          ) : (
+            <ErrorPage error={blogList.data} msg={blogList.msg} />
+          )}
         </Container>
       </Layout>
     </>
@@ -29,9 +40,9 @@ const Blog = ({ allPosts }: Props) => {
 export default Blog
 
 export const getServerSideProps = async () => {
-  const allPosts = await getBlogList()
+  const blogList: ResponseType<BlogListType> = await getBlogList()
 
   return {
-    props: { allPosts },
+    props: { blogList },
   }
 }

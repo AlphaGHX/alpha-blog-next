@@ -33,15 +33,17 @@ const Intro = () => {
     <div
       className="fixed flex flex-row flex-wrap justify-between items-center
                 w-full p-2 md:p-6 z-50 text-main-text backdrop-filter
-                backdrop-blur border-b-2 border-main-text
+                backdrop-blur shadow-main-base shadow-main-shadow dark:shadow-main-shadow-dark
               bg-bg-blur dark:bg-bg-blur-dark
-              dark:text-main-text-dark shadow-md dark:border-main-text-dark
+              dark:text-main-text-dark
                 duration-300"
     >
-      <h1 className="font-main-text text-2xl md:text-5xl font-bold">Alpha Blog.</h1>
+      <h1 className="font-main-text text-2xl md:text-5xl font-bold">
+        Alpha Blog.
+      </h1>
       <div className="felx-row flex-wrap justify-end hidden md:flex">
         <Button
-          className="ml-4"
+          className="ml-6"
           icon={{ icon: faHouseChimney, size: 'sm' }}
           click={routerPush}
           clickProps={['/']}
@@ -49,7 +51,7 @@ const Intro = () => {
           主页
         </Button>
         <Button
-          className="ml-4"
+          className="ml-6"
           icon={{ icon: faHeart, size: 'sm' }}
           click={routerPush}
           clickProps={['/blog']}
@@ -57,7 +59,7 @@ const Intro = () => {
           博客
         </Button>
         <Button
-          className="ml-4"
+          className="ml-6"
           icon={{ icon: faMoon, size: 'sm' }}
           click={darkModeUpdate}
         >
