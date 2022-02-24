@@ -18,7 +18,7 @@ const Post = ({ rawHtml, blogInfo }: Props) => {
     <>
       <Layout>
         <Head>
-          <title>{blogInfo.data.name}</title>
+          <title>{blogInfo.data.title}</title>
         </Head>
         <Intro />
         <Container>

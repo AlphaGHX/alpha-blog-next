@@ -9,9 +9,17 @@ export type BlogListType = BlogInfoType[]
 export type BlogInfoType = {
   createdat: string
   updatedat: string
-  deletedat: string
   name: string
   title: string
   text: string
   tag: string[]
+}
+
+export type Token = {
+  token: string
+}
+
+export type UserInfo = {
+  username: string
+  password: string
 }

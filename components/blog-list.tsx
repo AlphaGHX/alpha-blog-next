@@ -28,7 +28,7 @@ const BlogList = ({ blogList }: Props) => {
           className="flex flex-col md:flex-row text-main-text
           dark:text-main-text-dark duration-100 mb-10
           shadow-main-base shadow-main-shadow dark:shadow-main-shadow-dark
-          rounded-3xl overflow-hidden relative hover:border-black"
+          rounded-3xl overflow-hidden relative"
           key={post.name}
         >
           <div

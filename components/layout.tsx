@@ -9,7 +9,7 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <Meta />
-      <div className="min-h-screen duration-300">
+      <div className="min-h-screen">
         <main>{children}</main>
       </div>
       <Footer />
