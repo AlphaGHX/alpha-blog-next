@@ -26,8 +26,7 @@ const BlogList = ({ blogList }: Props) => {
       {blogList.data.map((post) => (
         <div
           className="flex flex-col md:flex-row text-main-text
-          dark:text-main-text-dark duration-100 mb-10
-          shadow-main-base shadow-main-shadow dark:shadow-main-shadow-dark
+          dark:text-main-text-dark duration-100 mb-10 shadow-base
           rounded-3xl overflow-hidden relative"
           key={post.name}
         >

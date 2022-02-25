@@ -1,12 +1,20 @@
 import { REMOTE } from './constants'
 import { UserInfo } from '../types/post'
 
+const retError = (error: any): any => {
+  return {
+    code: -2,
+    data: { ...error },
+    msg: '请求错误',
+  }
+}
+
 export const getBlogList = async () => {
   try {
     let response = await fetch(REMOTE.LIST)
     return await response.json()
   } catch (error) {
-    console.log('Request Failed', error)
+    return retError(error)
   }
 }
 
@@ -15,7 +23,7 @@ export const getBlog = async (slug: string) => {
     let response = await fetch(REMOTE.BLOG + slug)
     return await response.text()
   } catch (error) {
-    console.log('Request Failed', error)
+    return retError(error)
   }
 }
 
@@ -24,7 +32,7 @@ export const getBlogInfo = async (slug: string) => {
     let response = await fetch(REMOTE.BLOG_INFO + slug)
     return await response.json()
   } catch (error) {
-    console.log('Request Failed', error)
+    return retError(error)
   }
 }
 
@@ -33,7 +41,7 @@ export const getBlogUseTag = async (slug: string) => {
     let response = await fetch(REMOTE.TAG + slug)
     return await response.json()
   } catch (error) {
-    console.log('Request Failed', error)
+    return retError(error)
   }
 }
 
@@ -51,7 +59,7 @@ export const verifyToken = async (token: string) => {
     let response = await fetch(REMOTE.VERIFY_TOKEN, requestOptions)
     return await response.json()
   } catch (error) {
-    console.log('Request Failed', error)
+    return retError(error)
   }
 }
 
@@ -75,6 +83,6 @@ export const verifyUser = async (userInfo: UserInfo) => {
     let response = await fetch(REMOTE.VERIFY_USER, requestOptions)
     return await response.json()
   } catch (error) {
-    console.log('Request Failed', error)
+    return retError(error)
   }
 }

@@ -33,10 +33,8 @@ const Intro = () => {
     <div
       className="fixed flex flex-row flex-wrap justify-between items-center
                 w-full p-2 md:p-6 z-50 text-main-text backdrop-filter
-                backdrop-blur shadow-main-base shadow-main-shadow dark:shadow-main-shadow-dark
-              bg-bg-blur dark:bg-bg-blur-dark
-              dark:text-main-text-dark
-                duration-300"
+                backdrop-blur shadow-base bg-bg-blur dark:bg-bg-blur-dark
+              dark:text-main-text-dark duration-300"
     >
       <h1 className="font-main-text text-2xl md:text-5xl font-bold">
         Alpha Blog.

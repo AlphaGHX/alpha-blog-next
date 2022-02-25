@@ -11,6 +11,10 @@ const Login = ({ loginSuccess }: Props) => {
   const password = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
+    if (username.current?.value === '' || password.current?.value === '') {
+      alert('请勿留空')
+      return
+    }
     const userInfo: UserInfo = {
       username: username.current?.value || '',
       password: password.current?.value || '',
@@ -20,7 +24,7 @@ const Login = ({ loginSuccess }: Props) => {
         localStorage.token = res.data.token
         loginSuccess()
       } else {
-        alert("登录失败,账号或密码错误.")
+        alert('登录失败,账号或密码错误.')
       }
     })
   }
@@ -28,12 +32,12 @@ const Login = ({ loginSuccess }: Props) => {
   return (
     <>
       <div
-        className="w-96 mx-auto text-main-text dark:text-main-text-dark
-                  shadow-main-base shadow-main-shadow dark:shadow-main-shadow-dark
+        className="w-11/12 sm:w-2/3 md:w-96 mx-auto text-main-text
+                dark:text-main-text-dark shadow-base
                   rounded-3xl overflow-hidden"
       >
         <div className="m-5">
-          <div className="text-3xl font-bold mb-5 ml-3">登录</div>
+          <div className="text-3xl font-bold my-10">登录</div>
           <form
             onSubmit={(e) => {
               handleSubmit()
@@ -41,14 +45,24 @@ const Login = ({ loginSuccess }: Props) => {
             }}
           >
             <div>
-              <label htmlFor="username">用户名</label>
-              <input name="username" ref={username} type="text" />
+              <input
+                className="input-base mb-5"
+                name="username"
+                ref={username}
+                type="text"
+                placeholder="用户名"
+              />
             </div>
             <div>
-              <label htmlFor="password">密码</label>
-              <input name="password" ref={password} type="password" />
+              <input
+                className="input-base mb-10"
+                name="password"
+                ref={password}
+                type="password"
+                placeholder="密码"
+              />
             </div>
-            <input type="submit" value="登录" />
+            <input className="input-bnt" type="submit" value="登录" />
           </form>
         </div>
       </div>

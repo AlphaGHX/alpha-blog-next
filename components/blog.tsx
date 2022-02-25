@@ -19,8 +19,7 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
   return (
     <>
       <div
-        className="flex flex-col
-                  shadow-main-small shadow-main-shadow dark:shadow-main-shadow-dark
+        className="flex flex-col shadow-base
                   rounded-3xl overflow-hidden relative"
       >
         <div className="h-64 sm:h-72 md:h-96 relative">
@@ -41,7 +40,7 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
               <FontAwesomeIcon className="ml-4 mr-2" icon={faArrowRotateRight} />
               {parseTime(blogInfo.data.updatedat)}
             </div>
-            <div className="flex flex-row flex-wrap mb-2">
+            <div className="flex flex-row flex-wrap mb-2 sm:mb-5">
               {blogInfo.data.tag &&
                 blogInfo.data.tag.map((tag, index) => (
                   <div

@@ -5,8 +5,8 @@ type Props = {
 
 const ErrorPage = ({ error, msg }: Props) => {
   return (
-    <div className="text-2xl font-bold">
-      请求错误: {msg} , 详细信息见log.{console.log(error)}
+    <div className="text-2xl font-bold text-red-400">
+      错误: {msg} , 详细信息见log.{console.error(error)}
     </div>
   )
 }

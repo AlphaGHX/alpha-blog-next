@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* BoxShadow */
+  .shadow-small {
+    @apply shadow-main-small shadow-main-shadow dark:shadow-main-shadow-dark;
+  }
+  .shadow-base {
+    @apply shadow-main-base shadow-main-shadow dark:shadow-main-shadow-dark;
+  }
+  .shadow-big {
+    @apply shadow-main-big shadow-main-shadow dark:shadow-main-shadow-dark;
+  }
+
+  /* Input */
+  .input-base {
+    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full
+    indent-4 shadow-small focus:shadow-base outline-none duration-300 font-bold;
+  }
+  .input-bnt {
+    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full shadow-small
+    focus:shadow-base duration-300 font-bold cursor-pointer hover:shadow-base active:shadow-small;
+  } 
+}
