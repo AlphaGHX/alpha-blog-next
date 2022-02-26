@@ -7,6 +7,7 @@ import { getBlog, getBlogInfo } from '../../lib/api'
 import { ResponseType, BlogInfoType } from '../../types/post'
 import markdownToHtml from '../../lib/markdown2Html'
 import Head from 'next/head'
+import CheckNet from '../../components/check-net'
 
 type Props = {
   rawHtml: string
@@ -22,11 +23,9 @@ const Post = ({ rawHtml, blogInfo }: Props) => {
         </Head>
         <Intro />
         <Container>
-          {blogInfo.code === 0 ? (
+          <CheckNet data={blogInfo}>
             <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
-          ) : (
-            <ErrorPage error={blogInfo.data} msg={blogInfo.msg} />
-          )}
+          </CheckNet>
         </Container>
       </Layout>
     </>

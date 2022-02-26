@@ -1,45 +1,18 @@
 import Intro from '../../components/intro'
 import Layout from '../../components/layout'
 import Container from '../../components/container'
-import Login from '../../components/login'
-import { getBlogList, verifyToken } from '../../lib/api'
-import { ResponseType } from '../../types/post'
+import { getBlogList } from '../../lib/api'
+import { BlogListType, ResponseType } from '../../types/post'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import BlogListEx from '../../components/blog-list-ex'
+import VerifyLocalToken from '../../components/verify-local-token'
+import CheckNet from '../../components/check-net'
 
-const AdminPage = () => {
-  const [verifying, setVerifying] = useState(true)
-  const [verifyok, setVerifyok] = useState(false)
+type Props = {
+  blogList: ResponseType<BlogListType>
+}
 
-  const verifyLogin = async (): Promise<boolean> => {
-    if (localStorage.token) {
-      let res: ResponseType<object> = await verifyToken(localStorage.token)
-      if (res && res.code === 0) {
-        return true
-      } else {
-        return false
-      }
-    } else {
-      return false
-    }
-  }
-
-  const loginSuccess = () => {
-    setVerifyok(true)
-  }
-
-  useEffect(() => {
-    verifyLogin().then((resolve) => {
-      setVerifying(false)
-      if (resolve === true) {
-        setVerifyok(true)
-        return getBlogList()
-      } else {
-        setVerifyok(false)
-      }
-    })
-  }, [])
-
+const AdminPage = ({ blogList }: Props) => {
   return (
     <>
       <Layout>
@@ -48,11 +21,11 @@ const AdminPage = () => {
         </Head>
         <Intro />
         <Container>
-          {!verifying && !verifyok && <Login loginSuccess={loginSuccess} />}
-          {!verifying && verifyok && <div>登录成功</div>}
-          {/* {!verifying && pagestat && <BlogListEx />} */}
-          {verifying && <div>Loading</div>}
-          {/* {verifying && <Loading />} */}
+          <CheckNet data={blogList}>
+            <VerifyLocalToken>
+              <BlogListEx blogList={blogList}></BlogListEx>
+            </VerifyLocalToken>
+          </CheckNet>
         </Container>
       </Layout>
     </>
@@ -60,3 +33,11 @@ const AdminPage = () => {
 }
 
 export default AdminPage
+
+export const getServerSideProps = async () => {
+  const blogList: ResponseType<BlogListType> = await getBlogList()
+
+  return {
+    props: { blogList },
+  }
+}

@@ -23,3 +23,10 @@ export type UserInfo = {
   username: string
   password: string
 }
+
+export type PostBlogInfo = {
+  name: string
+  title: string
+  text: string
+  tag: string[]
+}

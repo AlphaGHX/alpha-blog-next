@@ -22,5 +22,9 @@
   .input-bnt {
     @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full shadow-small
     focus:shadow-base duration-300 font-bold cursor-pointer hover:shadow-base active:shadow-small;
-  } 
+  }
+  .input-texta {
+    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-36 rounded-3xl
+    shadow-small focus:shadow-base outline-none font-bold p-3 duration-300;
+  }
 }

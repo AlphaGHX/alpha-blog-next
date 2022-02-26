@@ -2,10 +2,10 @@ import Layout from '../../components/layout'
 import Intro from '../../components/intro'
 import BlogList from '../../components/blog-list'
 import Container from '../../components/container'
-import ErrorPage from '../../components/error-page'
 import { getBlogList } from '../../lib/api'
 import { BlogListType, ResponseType } from '../../types/post'
 import Head from 'next/head'
+import CheckNet from '../../components/check-net'
 
 type Props = {
   blogList: ResponseType<BlogListType>
@@ -16,7 +16,7 @@ const Blog = ({ blogList }: Props) => {
     <>
       <Layout>
         <Head>
-          <title>alpha-blog</title>
+          <title>AlphaBlog</title>
         </Head>
         <Intro />
         <Container>
@@ -26,11 +26,9 @@ const Blog = ({ blogList }: Props) => {
           >
             所有博客。
           </div>
-          {blogList.code === 0 ? (
+          <CheckNet data={blogList}>
             <BlogList blogList={blogList} />
-          ) : (
-            <ErrorPage error={blogList.data} msg={blogList.msg} />
-          )}
+          </CheckNet>
         </Container>
       </Layout>
     </>

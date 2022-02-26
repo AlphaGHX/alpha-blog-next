@@ -1,11 +1,10 @@
-import Blog from '../../components/blog'
 import Intro from '../../components/intro'
 import Layout from '../../components/layout'
 import Container from '../../components/container'
-import ErrorPage from '../../components/error-page'
 import BlogList from '../../components/blog-list'
 import { getBlogUseTag } from '../../lib/api'
 import { ResponseType, BlogListType } from '../../types/post'
+import CheckNet from '../../components/check-net'
 import Head from 'next/head'
 
 type Props = {
@@ -28,11 +27,9 @@ const TagList = ({ tagList, slug }: Props) => {
           >
             与{'"' + slug + '"'}有关的博客。
           </div>
-          {tagList.code === 0 ? (
+          <CheckNet data={tagList}>
             <BlogList blogList={tagList}></BlogList>
-          ) : (
-            <ErrorPage error={tagList.data} msg={tagList.msg} />
-          )}
+          </CheckNet>
         </Container>
       </Layout>
     </>

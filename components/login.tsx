@@ -1,18 +1,17 @@
 import { useRef } from 'react'
 import { UserInfo, ResponseType, Token } from '../types/post'
 import { verifyUser } from '../lib/api'
+import { useRouter } from 'next/router'
 
-type Props = {
-  loginSuccess: () => void
-}
+const Login = () => {
+  const router = useRouter()
 
-const Login = ({ loginSuccess }: Props) => {
   const username = useRef<HTMLInputElement>(null)
   const password = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
     if (username.current?.value === '' || password.current?.value === '') {
-      alert('请勿留空')
+      alert('请填写完全')
       return
     }
     const userInfo: UserInfo = {
@@ -22,7 +21,7 @@ const Login = ({ loginSuccess }: Props) => {
     verifyUser(userInfo).then((res: ResponseType<Token>) => {
       if (res.code === 0) {
         localStorage.token = res.data.token
-        loginSuccess()
+        router.back()
       } else {
         alert('登录失败,账号或密码错误.')
       }
@@ -34,7 +33,7 @@ const Login = ({ loginSuccess }: Props) => {
       <div
         className="w-11/12 sm:w-2/3 md:w-96 mx-auto text-main-text
                 dark:text-main-text-dark shadow-base
-                  rounded-3xl overflow-hidden"
+                  rounded-3xl overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       >
         <div className="m-5">
           <div className="text-3xl font-bold my-10">登录</div>

@@ -7,4 +7,6 @@ export const REMOTE = {
   TAG: 'http://localhost:3000/api/system/tag/',
   VERIFY_TOKEN: 'http://localhost:3000/api/system/token-verify',
   VERIFY_USER: 'http://localhost:3000/api/system/user-verify',
+  POST_BLOG_INFO: 'http://localhost:3000/api/system/blog/uploadinfo',
+  POST_BLOG_FILE: 'http://localhost:3000/api/system/blog/uploadfile',
 }
