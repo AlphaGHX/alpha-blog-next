@@ -1,20 +1,45 @@
-import Head from "next/head"
-import Container from "../../../components/container"
-import Intro from "../../../components/intro"
-import Layout from "../../../components/layout"
+import Head from 'next/head'
+import BlogEditor from '../../../components/blog-editor'
+import CheckNet from '../../../components/check-net'
+import Container from '../../../components/container'
+import Intro from '../../../components/intro'
+import Layout from '../../../components/layout'
+import VerifyLocalToken from '../../../components/verify-local-token'
+import { getBlogInfo } from '../../../lib/api'
+import { ResponseType, BlogInfoType } from '../../../types/post'
 
-const EditBlog = () => {
+type Props = {
+  blogInfo: ResponseType<BlogInfoType>
+}
+
+const EditBlog = ({ blogInfo }: Props) => {
   return (
     <Layout>
       <Head>
-        <title>Admin</title>
+        <title></title>
       </Head>
       <Intro />
       <Container>
-        
+        <CheckNet data={blogInfo}>
+          <VerifyLocalToken>
+            <BlogEditor blogInof={blogInfo}></BlogEditor>
+          </VerifyLocalToken>
+        </CheckNet>
       </Container>
     </Layout>
   )
 }
 
 export default EditBlog
+
+type Params = {
+  params: { slug: string }
+}
+
+export const getServerSideProps = async ({ params: { slug } }: Params) => {
+  const blogInfo: ResponseType<BlogInfoType> = await getBlogInfo(slug)
+
+  return {
+    props: { blogInfo },
+  }
+}

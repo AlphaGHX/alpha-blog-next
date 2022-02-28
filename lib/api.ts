@@ -128,6 +128,33 @@ export const postBlogInfo = async (token: string, data: PostBlogInfo) => {
   }
 }
 
+export const createBlogInfo = async (token: string, data: PostBlogInfo) => {
+  var myHeaders = new Headers()
+  myHeaders.append('x-token', token)
+  myHeaders.append('Content-Type', 'application/json')
+
+  var raw = JSON.stringify({
+    name: data.name,
+    title: data.title,
+    text: data.text,
+    tag: data.tag,
+  })
+
+  var requestOptions: RequestInit = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow',
+  }
+
+  try {
+    let response = await fetch(REMOTE.CREATE_BLOG_INFO, requestOptions)
+    return await response.json()
+  } catch (error) {
+    return retError(error)
+  }
+}
+
 export const postBlogFile = async (
   token: string,
   topImg: File,
@@ -151,6 +178,24 @@ export const postBlogFile = async (
 
   try {
     let response = await fetch(REMOTE.POST_BLOG_FILE, requestOptions)
+    return await response.json()
+  } catch (error) {
+    return retError(error)
+  }
+}
+
+export const delBlog = async (token: string, name: string) => {
+  var myHeaders = new Headers()
+  myHeaders.append('x-token', token)
+
+  var requestOptions: RequestInit = {
+    method: 'POST',
+    headers: myHeaders,
+    redirect: 'follow',
+  }
+
+  try {
+    let response = await fetch(REMOTE.DEL_BLOG + name, requestOptions)
     return await response.json()
   } catch (error) {
     return retError(error)

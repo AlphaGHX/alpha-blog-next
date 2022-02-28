@@ -45,7 +45,6 @@ const BlogListEx = ({ blogList }: Props) => {
                       dark:text-main-text-dark duration-100 mb-10 shadow-base
                         rounded-3xl overflow-hidden relative"
           key={post.name}
-          onClick={() => editBlog(post.name)}
         >
           <div
             className="flex-shrink-0 h-40 sm:h-52 md:w-60 md:h-auto
@@ -62,6 +61,7 @@ const BlogListEx = ({ blogList }: Props) => {
             <div
               className="text-2xl font-bold mx-5 mt-5 break-all line-clamp-2 overflow-hidden
                             cursor-pointer no-underline hover:underline"
+              onClick={() => editBlog(post.name)}
             >
               {post.title}
             </div>
@@ -75,7 +75,7 @@ const BlogListEx = ({ blogList }: Props) => {
                   <div
                     className="text-xs py-0.5 px-2 mr-2 mt-1 rounded-full
                                   shadow-main-small shadow-main-shadow dark:shadow-main-shadow-dark
-                                text-main-text dark:text-main-text-dark cursor-pointer no-underline hover:underline"
+                                text-main-text dark:text-main-text-dark"
                     key={index}
                   >
                     {tag}

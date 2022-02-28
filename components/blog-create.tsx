@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
-import { postBlogFile, postBlogInfo } from '../lib/api'
+import { createBlogInfo, postBlogFile } from '../lib/api'
 import { PostBlogInfo } from '../types/post'
 
 const BlogCreate = () => {
@@ -17,6 +17,11 @@ const BlogCreate = () => {
   const markdownLabel = useRef<HTMLDivElement>(null)
 
   const handleSubmit = () => {
+    var r = confirm('确定要提交吗？')
+    if (r == false) {
+      return
+    }
+
     const blogNameValue = blogName.current?.value || ''
     const titleValue = title.current?.value || ''
     const textValue = text.current?.value || ''
@@ -40,7 +45,7 @@ const BlogCreate = () => {
         text: textValue,
         tag: tagsValue,
       }
-      postBlogInfo(localStorage.token, data)
+      createBlogInfo(localStorage.token, data)
         .then((res) => {
           if (res.code === 0) {
             return postBlogFile(
@@ -49,21 +54,16 @@ const BlogCreate = () => {
               markdownValue[0],
               blogNameValue
             )
-          } else if (res.code === 1) {
-            alert('处理Info时后端错误')
-            return Promise.reject()
           } else {
-            alert('处理Info时网络错误')
+            alert('处理Info时' + res.msg)
             return Promise.reject()
           }
         })
         .then((res) => {
           if (res.code === 0) {
             router.back()
-          } else if (res.code === 1) {
-            alert('处理File时后端错误')
           } else {
-            alert('处理File时网络错误')
+            alert('处理File时' + res.msg)
           }
         })
     }
@@ -146,7 +146,7 @@ const BlogCreate = () => {
                 name="blogName"
                 ref={blogName}
                 type="text"
-                autoComplete='off'
+                autoComplete="off"
               />
             </div>
             <div>
@@ -156,7 +156,7 @@ const BlogCreate = () => {
                 name="title"
                 ref={title}
                 type="text"
-                autoComplete='off'
+                autoComplete="off"
               />
             </div>
             <div>
@@ -192,7 +192,7 @@ const BlogCreate = () => {
                   name="tag"
                   ref={tag}
                   type="text"
-                  autoComplete='off'
+                  autoComplete="off"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       addTag()
