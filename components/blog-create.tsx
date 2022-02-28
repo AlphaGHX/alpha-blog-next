@@ -123,12 +123,6 @@ const BlogCreate = () => {
   return (
     <>
       <div
-        className="font-main-text text-2xl mb-4 md:mb-10
-                  md:text-5xl font-bold text-main-text dark:text-main-text-dark"
-      >
-        新博客。
-      </div>
-      <div
         className="text-main-text dark:text-main-text-dark shadow-base
                   rounded-3xl overflow-hidden"
       >

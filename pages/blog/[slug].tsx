@@ -1,8 +1,4 @@
 import Blog from '../../components/blog'
-import Intro from '../../components/intro'
-import Layout from '../../components/layout'
-import Container from '../../components/container'
-import ErrorPage from '../../components/error-page'
 import { getBlog, getBlogInfo } from '../../lib/api'
 import { ResponseType, BlogInfoType } from '../../types/post'
 import markdownToHtml from '../../lib/markdown2Html'
@@ -17,17 +13,12 @@ type Props = {
 const Post = ({ rawHtml, blogInfo }: Props) => {
   return (
     <>
-      <Layout>
-        <Head>
-          <title>{blogInfo.data.title}</title>
-        </Head>
-        <Intro />
-        <Container>
-          <CheckNet data={blogInfo}>
-            <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
-          </CheckNet>
-        </Container>
-      </Layout>
+      <Head>
+        <title>{blogInfo.data.title}</title>
+      </Head>
+      <CheckNet data={blogInfo}>
+        <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
+      </CheckNet>
     </>
   )
 }

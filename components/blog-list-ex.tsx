@@ -29,13 +29,11 @@ const BlogListEx = ({ blogList }: Props) => {
   return (
     <>
       <div className="flex flex-row justify-between items-center mb-4 md:mb-10 text-main-text dark:text-main-text-dark">
-        <div
-          className="font-main-text text-2xl
-                    md:text-5xl font-bold text-main-text dark:text-main-text-dark"
+        <Button
+          icon={{ icon: faCirclePlus, size: 'sm' }}
+          click={createBlog}
+          type="md"
         >
-          今天想做些什么呢?
-        </div>
-        <Button icon={{ icon: faCirclePlus, size: 'sm' }} click={createBlog}>
           写个博客
         </Button>
       </div>

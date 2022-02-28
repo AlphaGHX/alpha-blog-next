@@ -1,12 +1,10 @@
-import Intro from '../../components/intro'
-import Layout from '../../components/layout'
-import Container from '../../components/container'
 import { getBlogList } from '../../lib/api'
 import { BlogListType, ResponseType } from '../../types/post'
 import Head from 'next/head'
 import BlogListEx from '../../components/blog-list-ex'
 import VerifyLocalToken from '../../components/verify-local-token'
 import CheckNet from '../../components/check-net'
+import PageTitle from '../../components/page-title'
 
 type Props = {
   blogList: ResponseType<BlogListType>
@@ -15,19 +13,15 @@ type Props = {
 const AdminPage = ({ blogList }: Props) => {
   return (
     <>
-      <Layout>
-        <Head>
-          <title>Admin</title>
-        </Head>
-        <Intro />
-        <Container>
-          <CheckNet data={blogList}>
-            <VerifyLocalToken>
-              <BlogListEx blogList={blogList}></BlogListEx>
-            </VerifyLocalToken>
-          </CheckNet>
-        </Container>
-      </Layout>
+      <Head>
+        <title>Admin</title>
+      </Head>
+      <PageTitle>今天想做些什么呢?</PageTitle>
+      <CheckNet data={blogList}>
+        <VerifyLocalToken>
+          <BlogListEx blogList={blogList}></BlogListEx>
+        </VerifyLocalToken>
+      </CheckNet>
     </>
   )
 }

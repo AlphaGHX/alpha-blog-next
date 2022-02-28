@@ -1,9 +1,7 @@
 import Head from 'next/head'
 import BlogEditor from '../../../components/blog-editor'
 import CheckNet from '../../../components/check-net'
-import Container from '../../../components/container'
-import Intro from '../../../components/intro'
-import Layout from '../../../components/layout'
+import PageTitle from '../../../components/page-title'
 import VerifyLocalToken from '../../../components/verify-local-token'
 import { getBlogInfo } from '../../../lib/api'
 import { ResponseType, BlogInfoType } from '../../../types/post'
@@ -14,19 +12,17 @@ type Props = {
 
 const EditBlog = ({ blogInfo }: Props) => {
   return (
-    <Layout>
+    <>
       <Head>
         <title></title>
       </Head>
-      <Intro />
-      <Container>
-        <CheckNet data={blogInfo}>
-          <VerifyLocalToken>
-            <BlogEditor blogInof={blogInfo}></BlogEditor>
-          </VerifyLocalToken>
-        </CheckNet>
-      </Container>
-    </Layout>
+      <PageTitle>修改{'"' + blogInfo.data.name + '"'}。</PageTitle>
+      <CheckNet data={blogInfo}>
+        <VerifyLocalToken>
+          <BlogEditor blogInfo={blogInfo}></BlogEditor>
+        </VerifyLocalToken>
+      </CheckNet>
+    </>
   )
 }
 

@@ -4,10 +4,10 @@ import { delBlog, postBlogFile, postBlogInfo } from '../lib/api'
 import { PostBlogInfo, ResponseType } from '../types/post'
 
 type Props = {
-  blogInof: ResponseType<PostBlogInfo>
+  blogInfo: ResponseType<PostBlogInfo>
 }
 
-const BlogEditor = ({ blogInof }: Props) => {
+const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
   const router = useRouter()
   const [tags, setTages] = useState(new Array<string>())
 
@@ -83,7 +83,7 @@ const BlogEditor = ({ blogInof }: Props) => {
   const handleDel = () => {
     var r = confirm('确定要删除吗？')
     if (r == true) {
-      delBlog(localStorage.token, blogInof.data.name).then((res) => {
+      delBlog(localStorage.token, blogInfo.data.name).then((res) => {
         if (res.code === 0) {
           router.back()
         } else {
@@ -145,21 +145,15 @@ const BlogEditor = ({ blogInof }: Props) => {
   }
 
   useEffect(() => {
-    blogName.current && (blogName.current.value = blogInof.data.name)
+    blogName.current && (blogName.current.value = blogInfo.data.name)
     blogName.current && (blogName.current.disabled = true)
-    title.current && (title.current.value = blogInof.data.title)
-    text.current && (text.current.value = blogInof.data.text)
-    setTages(blogInof.data.tag)
+    title.current && (title.current.value = blogInfo.data.title)
+    text.current && (text.current.value = blogInfo.data.text)
+    setTages(blogInfo.data.tag)
   }, [])
 
   return (
     <>
-      <div
-        className="font-main-text text-2xl mb-4 md:mb-10
-                  md:text-5xl font-bold text-main-text dark:text-main-text-dark"
-      >
-        修改{'"' + blogInof.data.name + '"'}。
-      </div>
       <div
         className="text-main-text dark:text-main-text-dark shadow-base
                   rounded-3xl overflow-hidden"
