@@ -14,7 +14,7 @@ const TagList = ({ tagList, slug }: Props) => {
   return (
     <>
       <Head>
-        <title>Search tag:{slug}</title>
+        <title>Search tag:{slug} - AlphaBlog</title>
       </Head>
       <PageTitle>与{'"' + slug + '"'}有关的博客。</PageTitle>
       <CheckNet data={tagList}>

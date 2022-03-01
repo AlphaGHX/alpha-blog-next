@@ -31,9 +31,9 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
             objectFit="cover"
           ></Image>
           <div className="absolute bottom-0 px-2 sm:px-5 backdrop-blur-3xl w-full text-white bg-bg-blur-blogtitle duration-300">
-            <div className="text-2xl sm:text-3xl mt-2 sm:mt-5 mb-2">
+            <h1 className="text-2xl sm:text-3xl mt-2 sm:mt-5 mb-2">
               {blogInfo.data.title}
-            </div>
+            </h1>
             <div className="text-xs mb-2 sm:mb-2">
               <FontAwesomeIcon className="mr-2" icon={faClock} />
               {parseTime(blogInfo.data.createdat)}

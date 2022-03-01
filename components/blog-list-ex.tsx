@@ -32,7 +32,6 @@ const BlogListEx = ({ blogList }: Props) => {
         <Button
           icon={{ icon: faCirclePlus, size: 'sm' }}
           click={createBlog}
-          type="md"
         >
           写个博客
         </Button>

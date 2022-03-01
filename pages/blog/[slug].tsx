@@ -14,7 +14,7 @@ const Post = ({ rawHtml, blogInfo }: Props) => {
   return (
     <>
       <Head>
-        <title>{blogInfo.data.title}</title>
+        <title>{blogInfo.data.title} - AlphaBlog</title>
       </Head>
       <CheckNet data={blogInfo}>
         <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>

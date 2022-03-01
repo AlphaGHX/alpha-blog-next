@@ -150,6 +150,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
     title.current && (title.current.value = blogInfo.data.title)
     text.current && (text.current.value = blogInfo.data.text)
     setTages(blogInfo.data.tag)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

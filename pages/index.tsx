@@ -5,7 +5,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <title>AlphaBlog</title>
+        <title>Home - AlphaBlog</title>
       </Head>
       <Home />
     </>

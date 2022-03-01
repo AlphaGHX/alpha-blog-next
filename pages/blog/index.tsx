@@ -13,7 +13,7 @@ const Blog = ({ blogList }: Props) => {
   return (
     <>
       <Head>
-        <title>AlphaBlog</title>
+        <title>Blog - AlphaBlog</title>
       </Head>
       <PageTitle>所有博客。</PageTitle>
       <CheckNet data={blogList}>
