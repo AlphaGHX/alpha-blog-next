@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { delBlog, postBlogFile, postBlogInfo } from '../lib/api'
+import { REMOTE } from '../lib/constants'
 import { PostBlogInfo, ResponseType } from '../types/post'
 
 type Props = {
@@ -10,6 +11,11 @@ type Props = {
 const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
   const router = useRouter()
   const [tags, setTages] = useState(new Array<string>())
+  const [isProcessing, setIsProcessing] = useState({
+    text: '',
+    style: '',
+    disable: false,
+  })
 
   const blogName = useRef<HTMLInputElement>(null)
   const title = useRef<HTMLInputElement>(null)
@@ -25,6 +31,12 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
     if (r == false) {
       return
     }
+
+    setIsProcessing({
+      text: '处理中...',
+      style: 'brightness-75 cursor-not-allowed disable',
+      disable: true,
+    })
 
     const blogNameValue = blogName.current?.value || ''
     const titleValue = title.current?.value || ''
@@ -50,16 +62,12 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
       postBlogInfo(localStorage.token, data)
         .then((res) => {
           if (res.code === 0) {
-            if (topImgValue.length !== 0 && markdownValue.length) {
-              return postBlogFile(
-                localStorage.token,
-                topImgValue[0],
-                markdownValue[0],
-                blogNameValue
-              )
-            } else {
-              return Promise.reject()
-            }
+            return postBlogFile(
+              localStorage.token,
+              topImgValue[0],
+              markdownValue[0],
+              blogNameValue
+            )
           } else {
             alert('处理Info时' + res.msg)
             return Promise.reject()
@@ -72,9 +80,19 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
             } else {
               alert('处理File时' + res.msg)
             }
+            setIsProcessing({
+              text: '',
+              style: '',
+              disable: false,
+            })
           },
           (reject) => {
             router.back()
+            setIsProcessing({
+              text: '',
+              style: '',
+              disable: false,
+            })
           }
         )
     }
@@ -150,7 +168,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
     title.current && (title.current.value = blogInfo.data.title)
     text.current && (text.current.value = blogInfo.data.text)
     setTages(blogInfo.data.tag)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -174,6 +192,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
                 ref={blogName}
                 type="text"
                 autoComplete="off"
+                disabled={true}
               />
             </div>
             <div>
@@ -240,6 +259,12 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
             <div>
               <div className="ml-4 mb-1">
                 顶部图片（如不选择即使用原来的图片）
+                <a
+                  className="underline"
+                  href={REMOTE.LIST_IMG + blogInfo.data.name}
+                >
+                  获取原图片
+                </a>
               </div>
               <div className="w-full py-10 text-center shadow-small relative mb-5 rounded-3xl overflow-hidden">
                 <div ref={topImgLabel}>拖拽到此或选取文件</div>
@@ -254,7 +279,13 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
             </div>
             <div>
               <div className="ml-4 mb-1">
-                Markdown（如不选择即使用原来的MD）
+                Markdown（如不选择即使用原来的Markdown）
+                <a
+                  className="underline"
+                  href={REMOTE.BLOG + blogInfo.data.name}
+                >
+                  获取原Markdown
+                </a>
               </div>
               <div className="w-full py-10 text-center shadow-small relative mb-10 rounded-3xl overflow-hidden">
                 <div ref={markdownLabel}>拖拽到此或选取文件</div>
@@ -268,16 +299,21 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
               </div>
             </div>
             <input
-              className="input-bnt mb-5"
+              className={'input-bnt mb-5 ' + isProcessing.style}
               type="button"
-              value="完成"
+              value={isProcessing.disable ? isProcessing.text : '完成'}
               onClick={handleSubmit}
+              disabled={isProcessing.disable}
             />
             <input
-              className="input-bnt bg-red-400 text-white dark:bg-red-900 dark:text-white"
+              className={
+                'input-bnt bg-red-400 text-white dark:bg-red-900 dark:text-white ' +
+                isProcessing.style
+              }
               type="button"
-              value="删除"
+              value={isProcessing.disable ? isProcessing.text : '删除'}
               onClick={handleDel}
+              disabled={isProcessing.disable}
             />
           </form>
         </div>

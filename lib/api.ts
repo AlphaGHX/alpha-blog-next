@@ -165,8 +165,8 @@ export const postBlogFile = async (
   myHeaders.append('x-token', token)
 
   var formdata = new FormData()
-  formdata.append('files', markdown)
-  formdata.append('files', topImg)
+  formdata.append('markdown', markdown)
+  formdata.append('topImg', topImg)
   formdata.append('name', name)
 
   var requestOptions: RequestInit = {

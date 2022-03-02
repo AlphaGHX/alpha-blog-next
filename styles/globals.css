@@ -16,15 +16,15 @@
 
   /* Input */
   .input-base {
-    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full border-2 border-slate-400
-    indent-4 focus:border-slate-600 outline-none duration-300 font-bold;
+    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full border-2 border-slate-300
+  focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 indent-4 outline-none duration-300 font-bold;
   }
   .input-bnt {
     @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full shadow-small
     focus:shadow-base duration-300 font-bold cursor-pointer hover:shadow-base active:shadow-small;
   }
   .input-texta {
-    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-36 rounded-3xl border-2 border-slate-400
-    focus:border-slate-600 outline-none font-bold p-3 duration-300;
+    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-36 rounded-3xl border-2 border-slate-300
+  focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 outline-none font-bold p-3 duration-300;
   }
 }

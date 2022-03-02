@@ -1,3 +1,4 @@
+import { rejects } from 'assert'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
 import { createBlogInfo, postBlogFile } from '../lib/api'
@@ -6,6 +7,11 @@ import { PostBlogInfo } from '../types/post'
 const BlogCreate = () => {
   const router = useRouter()
   const [tags, setTages] = useState(new Array<string>())
+  const [isProcessing, setIsProcessing] = useState({
+    text: '',
+    style: '',
+    disable: false,
+  })
 
   const blogName = useRef<HTMLInputElement>(null)
   const title = useRef<HTMLInputElement>(null)
@@ -21,6 +27,12 @@ const BlogCreate = () => {
     if (r == false) {
       return
     }
+
+    setIsProcessing({
+      text: '处理中...',
+      style: 'brightness-75 cursor-not-allowed disable',
+      disable: true,
+    })
 
     const blogNameValue = blogName.current?.value || ''
     const titleValue = title.current?.value || ''
@@ -59,13 +71,28 @@ const BlogCreate = () => {
             return Promise.reject()
           }
         })
-        .then((res) => {
-          if (res.code === 0) {
+        .then(
+          (res) => {
+            if (res.code === 0) {
+              router.back()
+            } else {
+              alert('处理File时' + res.msg)
+            }
+            setIsProcessing({
+              text: '',
+              style: '',
+              disable: false,
+            })
+          },
+          (reject) => {
             router.back()
-          } else {
-            alert('处理File时' + res.msg)
+            setIsProcessing({
+              text: '',
+              style: '',
+              disable: false,
+            })
           }
-        })
+        )
     }
   }
 
@@ -231,10 +258,11 @@ const BlogCreate = () => {
               </div>
             </div>
             <input
-              className="input-bnt"
+              className={'input-bnt ' + isProcessing.style}
               type="button"
-              value="完成"
+              value={isProcessing.disable ? isProcessing.text : '完成'}
               onClick={handleSubmit}
+              disabled={isProcessing.disable}
             />
           </form>
         </div>
