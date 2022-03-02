@@ -44,7 +44,7 @@ const BlogList = ({ blogList }: Props) => {
               objectFit="cover"
             ></Image>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col grow">
             <div
               className="text-2xl font-bold mx-5 mt-5 break-all line-clamp-2 overflow-hidden
               cursor-pointer no-underline hover:underline"
@@ -62,8 +62,7 @@ const BlogList = ({ blogList }: Props) => {
               {post.tag &&
                 post.tag.map((tag, index) => (
                   <div
-                    className="text-xs py-0.5 px-2 mr-2 mt-1 rounded-full
-                    shadow-main-small shadow-main-shadow dark:shadow-main-shadow-dark
+                    className="text-xs py-0.5 px-2 mr-2 mt-1 rounded-full shadow-small
                     text-main-text dark:text-main-text-dark cursor-pointer no-underline hover:underline"
                     key={index}
                     onClick={(e) => {

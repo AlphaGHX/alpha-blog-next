@@ -10,8 +10,8 @@ module.exports = {
         'main-big': '0 0 20px 0',
       },
       scale: {
-        '101': '1.01',
-      }
+        101: '1.01',
+      },
     },
     colors: {
       transparent: 'transparent',
@@ -22,6 +22,7 @@ module.exports = {
       indigo: colors.indigo,
       red: colors.rose,
       yellow: colors.amber,
+      slate: colors.slate,
       'main-text': '#334155',
       'main-text-dark': '#cbd5e1',
       'main-shadow': '#94a3b8',

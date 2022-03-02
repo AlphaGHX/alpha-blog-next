@@ -15,29 +15,41 @@ const TopBar = () => {
   const [loadingBar, setLoadingBar] = useState('w-0 opacity-0')
   const [darkState, setDarkState] = useState({ icon: faGear, text: '自动' })
 
-  const handelDarkChange = () => {
+  const changeMode = () => {
     if (!('theme' in localStorage)) {
-      setDarkState({ icon: faGear, text: '自动' })
+      setDarkState({ icon: faMoon, text: '深色' })
+      document.documentElement.classList.add('dark')
+      localStorage.theme = 'dark'
     } else {
       if (localStorage.theme === 'dark') {
-        document.documentElement.classList.add('dark')
-        setDarkState({ icon: faMoon, text: '深色' })
-      } else {
-        document.documentElement.classList.remove('dark')
         setDarkState({ icon: faSun, text: '浅色' })
+        document.documentElement.classList.remove('dark')
+        localStorage.theme = 'light'
+      } else {
+        setDarkState({ icon: faGear, text: '自动' })
+        localStorage.removeItem('theme')
+        darkModeInit()
       }
     }
   }
 
-  const darkModeUpdate = () => {
+  const darkModeInit = () => {
     if (!('theme' in localStorage)) {
-      localStorage.theme = 'dark'
-    } else if (localStorage.theme === 'dark') {
-      localStorage.theme = 'light'
+      setDarkState({ icon: faGear, text: '自动' })
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     } else {
-      localStorage.removeItem('theme')
+      if (localStorage.theme === 'dark') {
+        setDarkState({ icon: faMoon, text: '深色' })
+        document.documentElement.classList.add('dark')
+      } else {
+        setDarkState({ icon: faSun, text: '浅色' })
+        document.documentElement.classList.remove('dark')
+      }
     }
-    handelDarkChange()
   }
 
   //顶栏加载动画处理函数
@@ -61,7 +73,8 @@ const TopBar = () => {
   }
 
   useEffect(() => {
-    handelDarkChange()
+    darkModeInit()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   //路由变化监听器
@@ -114,7 +127,7 @@ const TopBar = () => {
           <Button
             className="ml-2 md:ml-6"
             icon={{ icon: darkState.icon, size: 'sm' }}
-            click={darkModeUpdate}
+            click={changeMode}
           >
             {darkState.text}
           </Button>

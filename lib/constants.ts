@@ -1,4 +1,4 @@
-const DOMAIN = 'lolizzz.com'
+const DOMAIN = 'blog.lolizzz.com'
 const BACKEND_PORT = ':12900'
 const WEB_PORT = ':3000'
 
@@ -27,12 +27,12 @@ export const START = {
   BLOG_INFO: 'http://localhost' + BACKEND_PORT + '/system/blog-info/',
   TAG: 'http://localhost' + BACKEND_PORT + '/system/tag/',
 
-  VERIFY_TOKEN: 'http://' + DOMAIN + WEB_PORT + '/system/token-verify',
-  VERIFY_USER: 'http://' + DOMAIN + WEB_PORT + '/system/user-verify',
-  POST_BLOG_INFO: 'http://' + DOMAIN + WEB_PORT + '/system/blog/uploadinfo',
-  POST_BLOG_FILE: 'http://' + DOMAIN + WEB_PORT + '/system/blog/uploadfile',
-  CREATE_BLOG_INFO: 'http://' + DOMAIN + WEB_PORT + '/system/blog/createinfo',
-  DEL_BLOG: 'http://' + DOMAIN + WEB_PORT + '/system/blog/del/',
+  VERIFY_TOKEN: 'https://' + DOMAIN + '/system/token-verify',
+  VERIFY_USER: 'https://' + DOMAIN  + '/system/user-verify',
+  POST_BLOG_INFO: 'https://' + DOMAIN + '/system/blog/uploadinfo',
+  POST_BLOG_FILE: 'https://' + DOMAIN + '/system/blog/uploadfile',
+  CREATE_BLOG_INFO: 'https://' + DOMAIN + '/system/blog/createinfo',
+  DEL_BLOG: 'https://' + DOMAIN + '/system/blog/del/',
 }
 
 export const REMOTE = { ...DEV }
