@@ -261,7 +261,8 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
                 顶部图片（如不选择即使用原来的图片）
                 <a
                   className="underline"
-                  href={REMOTE.LIST_IMG + blogInfo.data.name}
+                  href={REMOTE.LIST_IMG_EX + blogInfo.data.name}
+                  download={blogInfo.data.name}
                 >
                   获取原图片
                 </a>
@@ -282,7 +283,8 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
                 Markdown（如不选择即使用原来的Markdown）
                 <a
                   className="underline"
-                  href={REMOTE.BLOG + blogInfo.data.name}
+                  href={REMOTE.BLOG_EX + blogInfo.data.name}
+                  download={blogInfo.data.name}
                 >
                   获取原Markdown
                 </a>

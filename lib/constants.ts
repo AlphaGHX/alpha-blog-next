@@ -26,6 +26,8 @@ const DEV = {
   BLOG_INFO: 'http://localhost' + WEB_PORT + '/api/system/blog-info/',
   TAG: 'http://localhost' + WEB_PORT + '/api/system/tag/',
 
+  LIST_IMG_EX: 'http://localhost' + WEB_PORT + '/api/system/list/img/',
+  BLOG_EX: 'http://localhost' + WEB_PORT + '/api/system/blog/',
   VERIFY_TOKEN: 'http://localhost' + WEB_PORT + '/api/system/token-verify',
   VERIFY_USER: 'http://localhost' + WEB_PORT + '/api/system/user-verify',
   POST_BLOG_INFO: 'http://localhost' + WEB_PORT + '/api/system/blog/uploadinfo',
@@ -43,6 +45,8 @@ const START = {
   BLOG_INFO: 'http://localhost' + BACKEND_PORT + '/system/blog-info/',
   TAG: 'http://localhost' + BACKEND_PORT + '/system/tag/',
 
+  LIST_IMG_EX: 'https://' + DOMAIN + '/system/list/img/',
+  BLOG_EX: 'https://' + DOMAIN + '/system/blog/',
   VERIFY_TOKEN: 'https://' + DOMAIN + '/system/token-verify',
   VERIFY_USER: 'https://' + DOMAIN + '/system/user-verify',
   POST_BLOG_INFO: 'https://' + DOMAIN + '/system/blog/uploadinfo',
