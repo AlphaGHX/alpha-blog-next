@@ -72,7 +72,7 @@ const BlogListEx = ({ blogList }: Props) => {
           </div>
           <div className="flex flex-col grow">
             <div
-              className="text-2xl font-bold mx-5 mt-5 break-all line-clamp-2 overflow-hidden
+              className="text-2xl font-bold mx-5 mt-5 break-words line-clamp-2 overflow-hidden
                         cursor-pointer no-underline hover:underline"
               onClick={() => editBlog(post.name)}
             >
@@ -94,7 +94,7 @@ const BlogListEx = ({ blogList }: Props) => {
                   </div>
                 ))}
             </div>
-            <div className="text-lg mx-5 my-5 break-all line-clamp-3 overflow-hidden">
+            <div className="text-lg mx-5 my-5 break-words line-clamp-3 overflow-hidden">
               {post.text}
             </div>
           </div>
