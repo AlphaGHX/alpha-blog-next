@@ -30,10 +30,6 @@ const BlogListEx = ({ blogList }: Props) => {
     router.push('admin/login')
   }
 
-  useEffect(() => {
-    console.log(router.asPath)
-  }, [router])
-
   return (
     <>
       <div className="flex flex-row items-center mb-4 md:mb-10 text-main-text dark:text-main-text-dark">
@@ -68,6 +64,7 @@ const BlogListEx = ({ blogList }: Props) => {
               src={REMOTE.LIST_IMG + post.name}
               alt="blog-item-img"
               objectFit="cover"
+              priority
             ></Image>
           </div>
           <div className="flex flex-col grow">

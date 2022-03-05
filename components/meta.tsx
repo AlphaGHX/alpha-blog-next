@@ -7,6 +7,7 @@ const Meta = () => {
         name="description"
         content={`A blog using Next.js`}
       />
+      <link rel="icon" href="favicon.png" />
     </Head>
   )
 }

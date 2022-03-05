@@ -42,6 +42,7 @@ const BlogList = ({ blogList }: Props) => {
               src={REMOTE.LIST_IMG + post.name}
               alt="blog-item-img"
               objectFit="cover"
+              priority
             ></Image>
           </div>
           <div className="flex flex-col grow">
