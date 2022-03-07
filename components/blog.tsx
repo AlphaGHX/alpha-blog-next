@@ -19,7 +19,7 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
   return (
     <>
       <div
-        className="flex flex-col relative card"
+        className="flex flex-col card"
       >
         <div className="h-64 sm:h-72 md:h-96 relative">
           <Image
