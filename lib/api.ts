@@ -201,3 +201,21 @@ export const delBlog = async (token: string, name: string) => {
     return retError(error)
   }
 }
+
+export const getGitHubUserInfo = async (username: string) => {
+  var requestOptions: RequestInit = {
+    method: 'GET',
+    redirect: 'follow',
+  }
+
+  try {
+    let response = await fetch(
+      'https://api.github.com/users/' + username,
+      requestOptions
+    )
+    const data = await response.json()
+    return { code: 0, data, msg: 'Ok' }
+  } catch (error) {
+    return retError(error)
+  }
+}

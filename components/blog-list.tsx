@@ -25,17 +25,17 @@ const BlogList = ({ blogList }: Props) => {
     <>
       {blogList.data.map((post) => (
         <div
-          className="flex flex-col md:flex-row text-main-text
-          dark:text-main-text-dark duration-100 mb-10 shadow-base
-          rounded-3xl overflow-hidden relative"
+          className="flex flex-col md:flex-row duration-100 mb-10 relative card"
           key={post.name}
         >
-          <div
+          <a
             className="flex-shrink-0 h-40 sm:h-52 md:w-60 md:h-auto
             bg-main-text dark:brightness-75 relative cursor-pointer"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault()
               toBlogItem(post.name)
             }}
+            href={'blog/' + post.name}
           >
             <Image
               layout="fill"
@@ -44,17 +44,19 @@ const BlogList = ({ blogList }: Props) => {
               objectFit="cover"
               priority
             ></Image>
-          </div>
+          </a>
           <div className="flex flex-col grow">
-            <div
+            <a
               className="text-2xl font-bold mx-5 mt-5 break-words line-clamp-2 overflow-hidden
               cursor-pointer no-underline hover:underline"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 toBlogItem(post.name)
               }}
+              href={'blog/' + post.name}
             >
               {post.title}
-            </div>
+            </a>
             <div className="text-xs mx-5 mt-1">
               <FontAwesomeIcon className="mr-2" icon={faClock} />
               {parseTime(post.createdat)}

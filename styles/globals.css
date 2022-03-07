@@ -27,4 +27,14 @@
     @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-36 rounded-3xl border-2 border-slate-300
   focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 outline-none font-bold p-3 duration-300;
   }
+
+  /* Card */
+  .card {
+    @apply text-main-text dark:text-main-text-dark shadow-base rounded-3xl overflow-hidden
+  }
+
+  /* backdrop-blur */
+  .backdrop-blur-base {
+    @apply backdrop-blur bg-bg-blur dark:bg-bg-blur-dark text-main-text dark:text-main-text-dark
+  }
 }

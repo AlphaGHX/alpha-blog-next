@@ -150,8 +150,7 @@ const BlogCreate = () => {
   return (
     <>
       <div
-        className="text-main-text dark:text-main-text-dark shadow-base
-                  rounded-3xl overflow-hidden"
+        className="card"
       >
         <div className="m-5">
           <form

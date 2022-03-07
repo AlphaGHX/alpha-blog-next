@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, memo } from 'react'
 import { UserInfo, ResponseType, Token } from '../types/post'
 import { verifyUser } from '../lib/api'
 import { useRouter } from 'next/router'
@@ -31,9 +31,7 @@ const Login = () => {
   return (
     <>
       <div
-        className="w-11/12 sm:w-2/3 md:w-96 mx-auto text-main-text
-                dark:text-main-text-dark shadow-base
-                  rounded-3xl overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        className="w-11/12 sm:w-2/3 md:w-96 mx-auto card"
       >
         <div className="m-5">
           <div className="text-3xl font-bold my-10">登录</div>
@@ -69,4 +67,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default memo(Login)

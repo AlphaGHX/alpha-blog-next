@@ -11,7 +11,7 @@ const CheckNet = ({ data, children }: Props) => {
   return (
     <>
       {data.code === 0 ? (
-        <>{children}</>
+        children
       ) : (
         <ErrorPage error={data.data} msg={data.msg} />
       )}

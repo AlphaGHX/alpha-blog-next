@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BlogListType, ResponseType } from '../types/post'
 import parseTime from '../lib/parseTime'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 
 type Props = {
   blogList: ResponseType<BlogListType>
@@ -50,9 +49,7 @@ const BlogListEx = ({ blogList }: Props) => {
       </div>
       {blogList.data.map((post) => (
         <div
-          className="flex flex-col md:flex-row text-main-text
-                  dark:text-main-text-dark duration-100 mb-10 shadow-base
-                    rounded-3xl overflow-hidden relative"
+          className="flex flex-col md:flex-row duration-100 mb-10 card"
           key={post.name}
         >
           <div

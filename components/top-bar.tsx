@@ -15,6 +15,7 @@ const TopBar = () => {
   const [loadingBar, setLoadingBar] = useState('w-0 opacity-0')
   const [darkState, setDarkState] = useState({ icon: faGear, text: '自动' })
 
+  // 切换深色模式
   const changeMode = () => {
     if (!('theme' in localStorage)) {
       setDarkState({ icon: faMoon, text: '深色' })
@@ -33,6 +34,7 @@ const TopBar = () => {
     }
   }
 
+  // 初始化深色模式
   const darkModeInit = () => {
     if (!('theme' in localStorage)) {
       setDarkState({ icon: faGear, text: '自动' })
@@ -98,11 +100,10 @@ const TopBar = () => {
   }, [])
 
   return (
-    <div className="fixed w-full text-main-text duration-300 z-50">
+    <div className="fixed w-full duration-300 z-50">
       <div
-        className="flex flex-row flex-wrap justify-between items-center backdrop-filter
-                  backdrop-blur shadow-base bg-bg-blur dark:bg-bg-blur-dark p-2 md:p-6
-                dark:text-main-text-dark duration-300"
+        className="flex flex-row flex-wrap justify-between items-center
+                  backdrop-blur-base shadow-base p-2 md:p-6 duration-300"
       >
         <h1 className="font-main-text text-2xl md:text-3xl font-bold">
           Alpha Blog.
