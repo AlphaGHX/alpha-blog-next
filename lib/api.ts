@@ -6,7 +6,7 @@ const retError = (error: any): any => {
   return {
     code: -2,
     data: { ...error },
-    msg: '请求错误',
+    msg: '网络错误',
   }
 }
 

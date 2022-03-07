@@ -37,4 +37,9 @@
   .backdrop-blur-base {
     @apply backdrop-blur bg-bg-blur dark:bg-bg-blur-dark text-main-text dark:text-main-text-dark
   }
+
+  /* text-base */
+  .text-base {
+    @apply text-main-text dark:text-main-text-dark
+  }
 }

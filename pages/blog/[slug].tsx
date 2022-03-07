@@ -4,6 +4,8 @@ import { ResponseType, BlogInfoType } from '../../types/post'
 import markdownToHtml from '../../lib/markdown2Html'
 import Head from 'next/head'
 import CheckNet from '../../components/check-net'
+import Loading from '../../components/loading'
+import { useEffect, useState } from 'react'
 
 type Props = {
   rawHtml: string
@@ -11,13 +13,21 @@ type Props = {
 }
 
 const Post = ({ rawHtml, blogInfo }: Props) => {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setIsLoading(false)
+  }, [])
+
   return (
     <>
       <Head>
         <title>{blogInfo.data.title} - AlphaBlog</title>
       </Head>
       <CheckNet data={blogInfo}>
-        <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
+        <Loading isLoadin={isLoading}>
+          <Blog rawHtml={rawHtml} blogInfo={blogInfo}></Blog>
+        </Loading>
       </CheckNet>
     </>
   )
