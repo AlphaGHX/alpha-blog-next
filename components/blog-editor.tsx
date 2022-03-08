@@ -53,20 +53,19 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
     ) {
       alert('输入不允许为空')
     } else {
-      const data: PostBlogInfo = {
-        name: blogNameValue,
-        title: titleValue,
-        text: textValue,
+      postBlogInfo(localStorage.token, {
+        name: blogNameValue.trim(),
+        title: titleValue.trim(),
+        text: textValue.trim(),
         tag: tagsValue,
-      }
-      postBlogInfo(localStorage.token, data)
+      })
         .then((res) => {
           if (res.code === 0) {
             return postBlogFile(
               localStorage.token,
               topImgValue[0],
               markdownValue[0],
-              blogNameValue
+              blogNameValue.trim()
             )
           } else {
             alert('处理Info时' + res.msg)
@@ -173,9 +172,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
 
   return (
     <>
-      <div
-        className="card"
-      >
+      <div className="card">
         <div className="m-5">
           <form
             onSubmit={(e) => {
