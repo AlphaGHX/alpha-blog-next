@@ -46,13 +46,13 @@ const Loading = ({ isLoadin, children }: Props) => {
   }, [isLoadin])
 
   const handelLoading = (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center text-color-base">
       <FontAwesomeIcon
         className="animate-spin"
         icon={faCircleNotch}
         size="lg"
       />
-      <span className="ml-3 text-base">载入...</span>
+      <span className="ml-3">载入...</span>
     </div>
   )
   return (

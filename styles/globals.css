@@ -39,7 +39,7 @@
   }
 
   /* text-base */
-  .text-base {
+  .text-color-base {
     @apply text-main-text dark:text-main-text-dark
   }
 }
