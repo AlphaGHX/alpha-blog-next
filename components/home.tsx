@@ -35,7 +35,11 @@ const Home = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    const topAnimation = gsap.from('.topAnimation', { opacity: 0, scale: 0.9 })
+    const topAnimation = gsap.from('.topAnimation', {
+      opacity: 0,
+      scale: 0.9,
+      delay: 0.1,
+    })
 
     const topScrollAnimation = gsap
       .timeline({
