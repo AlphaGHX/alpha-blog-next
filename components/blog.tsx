@@ -5,6 +5,8 @@ import Image from 'next/image'
 import router from 'next/router'
 import { faClock, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect } from 'react'
+import gsap from 'gsap'
 
 type Props = {
   rawHtml: string
@@ -16,11 +18,20 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
     router.push('/tag/' + url)
   }
 
+  useEffect(() => {
+    const loadAnimation = gsap.fromTo(
+      '.loadAnimation',
+      { opacity: 0, y: 48 },
+      { opacity: 1, y: 0, ease: 'expo.out', duration: 0.8, delay: 0.1 }
+    )
+    return () => {
+      loadAnimation.kill()
+    }
+  }, [])
+
   return (
     <>
-      <div
-        className="flex flex-col card"
-      >
+      <div className="flex flex-col card loadAnimation">
         <div className="h-64 sm:h-72 md:h-96 relative">
           <Image
             className="dark:brightness-75"
@@ -36,7 +47,10 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
             <div className="text-xs mb-2 sm:mb-2">
               <FontAwesomeIcon className="mr-2" icon={faClock} />
               {parseTime(blogInfo.data.createdat)}
-              <FontAwesomeIcon className="ml-4 mr-2" icon={faArrowRotateRight} />
+              <FontAwesomeIcon
+                className="ml-4 mr-2"
+                icon={faArrowRotateRight}
+              />
               {parseTime(blogInfo.data.updatedat)}
             </div>
             <div className="flex flex-row flex-wrap mb-2 sm:mb-5">

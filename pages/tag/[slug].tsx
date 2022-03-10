@@ -4,8 +4,6 @@ import { ResponseType, BlogListType } from '../../types/post'
 import CheckNet from '../../components/check-net'
 import Head from 'next/head'
 import PageTitle from '../../components/page-title'
-import Loading from '../../components/loading'
-import { useEffect, useState } from 'react'
 
 type Props = {
   tagList: ResponseType<BlogListType>
@@ -13,12 +11,6 @@ type Props = {
 }
 
 const TagList = ({ tagList, slug }: Props) => {
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    setIsLoading(false)
-  }, [])
-
   return (
     <>
       <Head>
@@ -26,15 +18,13 @@ const TagList = ({ tagList, slug }: Props) => {
       </Head>
       <PageTitle>与{'"' + slug + '"'}有关的博客。</PageTitle>
       <CheckNet data={tagList}>
-        <Loading isLoadin={isLoading}>
-          {tagList.data === null ? (
-            <div className="text-2xl font-bold text-red-400">
-              未找到tag，换个搜索词？
-            </div>
-          ) : (
-            <BlogList blogList={tagList}></BlogList>
-          )}
-        </Loading>
+        {tagList.data === null ? (
+          <div className="text-2xl font-bold text-red-400">
+            未找到tag，换个搜索词？
+          </div>
+        ) : (
+          <BlogList blogList={tagList}></BlogList>
+        )}
       </CheckNet>
     </>
   )

@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect } from 'react'
+import gsap from 'gsap'
 
 type Props = {
   blogList: ResponseType<BlogListType>
@@ -21,11 +23,29 @@ const BlogList = ({ blogList }: Props) => {
     router.push('/tag/' + url)
   }
 
+  useEffect(() => {
+    const loadAnimation = gsap.fromTo(
+      '.loadAnimation',
+      { opacity: 0, y: 48, marginBottom: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        marginBottom: 40,
+        ease: 'expo.out',
+        duration: 0.8,
+        delay: 0.1,
+      }
+    )
+    return () => {
+      loadAnimation.kill()
+    }
+  }, [])
+
   return (
     <>
       {blogList.data.map((post) => (
         <div
-          className="flex flex-col md:flex-row duration-100 mb-10 relative card"
+          className="flex flex-col md:flex-row mb-10 relative card loadAnimation"
           key={post.name}
         >
           <a
