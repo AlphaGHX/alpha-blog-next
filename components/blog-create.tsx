@@ -1,8 +1,6 @@
-import { rejects } from 'assert'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
 import { createBlogInfo, postBlogFile } from '../lib/api'
-import { PostBlogInfo } from '../types/post'
 
 const BlogCreate = () => {
   const router = useRouter()

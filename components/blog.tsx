@@ -74,7 +74,7 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
         </div>
         <div className="m-2 sm:m-5">
           <article
-            className="prose dark:prose-invert lg:prose-base max-w-none"
+            className="prose dark:prose-invert prose-base max-w-none"
             dangerouslySetInnerHTML={{ __html: rawHtml }}
           ></article>
         </div>
