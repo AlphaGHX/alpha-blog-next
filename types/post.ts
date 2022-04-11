@@ -12,6 +12,7 @@ export type BlogInfoType = {
   name: string
   title: string
   text: string
+  views: number
   tag: string[]
 }
 

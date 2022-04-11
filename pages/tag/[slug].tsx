@@ -19,9 +19,7 @@ const TagList = ({ tagList, slug }: Props) => {
       <PageTitle>与{'"' + slug + '"'}有关的博客。</PageTitle>
       <CheckNet data={tagList}>
         {tagList.data === null ? (
-          <div className="text-2xl font-bold text-red-400">
-            未找到tag，换个搜索词？
-          </div>
+          <div className="text-2xl font-bold text-red-400">未找到关键词。</div>
         ) : (
           <BlogList blogList={tagList}></BlogList>
         )}

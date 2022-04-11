@@ -9,7 +9,7 @@ type Props = {
   className?: string
   children?: ReactNode
   clickProps?: any[]
-  click?: (...props: any) => any
+  click?: Function
 }
 
 const Button = ({ icon, className, children, click, clickProps }: Props) => {

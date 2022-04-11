@@ -1,3 +1,4 @@
+// 存在导致崩溃的恶性bug，等待优化。
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import { memo, useEffect, useState } from 'react'

@@ -3,7 +3,7 @@ import { REMOTE } from '../lib/constants'
 import { ResponseType, BlogInfoType } from '../types/post'
 import Image from 'next/image'
 import router from 'next/router'
-import { faClock, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faArrowRotateRight, faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect } from 'react'
 import gsap from 'gsap'
@@ -52,6 +52,8 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
                 icon={faArrowRotateRight}
               />
               {parseTime(blogInfo.data.updatedat)}
+              <FontAwesomeIcon className="ml-4 mr-2" icon={faEye} />
+              {blogInfo.data.views}
             </div>
             <div className="flex flex-row flex-wrap mb-2 sm:mb-5">
               {blogInfo.data.tag &&

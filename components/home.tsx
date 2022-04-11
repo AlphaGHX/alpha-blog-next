@@ -11,7 +11,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MyCard from './my-card'
-import Loading from './loading'
 import { getGitHubUserInfo } from '../lib/api'
 
 const Home = () => {
@@ -139,9 +138,11 @@ const Home = () => {
         <div className="aboutMeAnimation flex flex-col justify-center items-center h-screen font-bold select-none text-color-base">
           <div className="aboutMeText1 mt-3 text-xl md:text-3xl">关于Alpha</div>
           <div className="aboutMeCard1 mt-10 w-full">
-            <Loading isLoadin={isLoading}>
+            {isLoading ? (
+              <div className="text-center">Loading...</div>
+            ) : (
               <MyCard data={outsideData.data}></MyCard>
-            </Loading>
+            )}
           </div>
         </div>
       </div>

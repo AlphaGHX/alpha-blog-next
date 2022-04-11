@@ -85,7 +85,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
               disable: false,
             })
           },
-          (reject) => {
+          (_) => {
             router.back()
             setIsProcessing({
               text: '',

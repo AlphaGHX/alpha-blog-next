@@ -81,7 +81,7 @@ const BlogCreate = () => {
               disable: false,
             })
           },
-          (reject) => {
+          (_) => {
             router.back()
             setIsProcessing({
               text: '',
