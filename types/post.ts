@@ -8,7 +8,6 @@ export type BlogListType = BlogInfoType[]
 
 export type BlogInfoType = {
   createdat: string
-  updatedat: string
   name: string
   title: string
   text: string
