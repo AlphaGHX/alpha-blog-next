@@ -29,6 +29,6 @@ Nextjs实现的一个服务端渲染博客
 [blog_backend](https://github.com/AlphaGHX/blog_backend)
 
 ## 运行
-* yarn
-* yarn proxy  (开发环境)
-* yarn build  (生产环境)
+1. yarn
+2. yarn proxy  (开发环境)
+3. yarn build  (生产环境)
