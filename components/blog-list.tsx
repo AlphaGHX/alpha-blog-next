@@ -39,14 +39,20 @@ const BlogList = ({ blogList }: Props) => {
 
   return (
     <>
-      {blogList.data.map((post) => (
-        <BlogListItem
-          key={post.name}
-          post={post}
-          onTitleClick={toBlogItem}
-          onTagClick={toTagList}
-        />
-      ))}
+      {blogList.data.length !== 0 ? (
+        blogList.data.map((post) => (
+          <BlogListItem
+            key={post.name}
+            post={post}
+            onTitleClick={toBlogItem}
+            onTagClick={toTagList}
+          />
+        ))
+      ) : (
+        <div className="text-2xl font-bold text-red-400">
+          还没有博客，请添加一个博客。
+        </div>
+      )}
     </>
   )
 }

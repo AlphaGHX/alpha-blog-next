@@ -1,5 +1,5 @@
 ## alpha-blog-next
-使用Nextjs实现的一个服务端渲染博客
+Nextjs实现的一个服务端渲染博客
 
 ## 使用到的技术
 * React
@@ -23,3 +23,12 @@
 * 显示所有tag
 * 模糊搜索
 * 评论
+* 分页
+
+## 后端
+[blog_backend](https://github.com/AlphaGHX/blog_backend)
+
+## 运行
+* yarn
+* yarn proxy  (开发环境)
+* yarn build  (生产环境)
