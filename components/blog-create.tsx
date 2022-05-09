@@ -1,43 +1,69 @@
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useReducer, useRef, useState } from 'react'
 import { createBlogInfo, postBlogFile } from '../lib/api'
+
+type ACTIONTYPE = { type: 'loading' } | { type: 'done' }
+
+const initialLoadingState = {
+  text: '',
+  style: '',
+  disable: false,
+}
+
+function loadingReducer(state: typeof initialLoadingState, action: ACTIONTYPE) {
+  switch (action.type) {
+    case 'loading':
+      return {
+        text: '处理中...',
+        style: 'brightness-75 cursor-not-allowed disable',
+        disable: true,
+      }
+    case 'done':
+      return {
+        text: '',
+        style: '',
+        disable: false,
+      }
+    default:
+      throw new Error()
+  }
+}
 
 const BlogCreate = () => {
   const router = useRouter()
   const [tags, setTages] = useState(new Array<string>())
-  const [isProcessing, setIsProcessing] = useState({
-    text: '',
-    style: '',
-    disable: false,
-  })
+  const [loadingState, loadingDispatch] = useReducer(
+    loadingReducer,
+    initialLoadingState
+  )
 
   const blogName = useRef<HTMLInputElement>(null)
-  const title = useRef<HTMLInputElement>(null)
-  const text = useRef<HTMLTextAreaElement>(null)
-  const tag = useRef<HTMLInputElement>(null)
-  const topImg = useRef<HTMLInputElement>(null)
   const markdown = useRef<HTMLInputElement>(null)
-  const topImgLabel = useRef<HTMLDivElement>(null)
-  const markdownLabel = useRef<HTMLDivElement>(null)
+  const topImg = useRef<HTMLInputElement>(null)
+  const title = useRef<HTMLInputElement>(null)
+  const tag = useRef<HTMLInputElement>(null)
 
-  const handleSubmit = () => {
+  const markdownLabel = useRef<HTMLDivElement>(null)
+  const topImgLabel = useRef<HTMLDivElement>(null)
+
+  const text = useRef<HTMLTextAreaElement>(null)
+
+  const handleSubmit = async () => {
     var r = confirm('确定要提交吗？')
     if (r == false) {
       return
     }
 
-    setIsProcessing({
-      text: '处理中...',
-      style: 'brightness-75 cursor-not-allowed disable',
-      disable: true,
-    })
+    loadingDispatch({ type: 'loading' })
 
     const blogNameValue = blogName.current?.value || ''
     const titleValue = title.current?.value || ''
     const textValue = text.current?.value || ''
-    const tagsValue = tags
-    const topImgValue = topImg.current?.files || new FileList()
+
     const markdownValue = markdown.current?.files || new FileList()
+    const topImgValue = topImg.current?.files || new FileList()
+
+    const tagsValue = tags
 
     if (
       blogNameValue === '' ||
@@ -48,48 +74,42 @@ const BlogCreate = () => {
       markdownValue.length === 0
     ) {
       alert('输入不允许为空')
-    } else {
-      createBlogInfo(localStorage.token, {
+      loadingDispatch({ type: 'done' })
+      return
+    }
+
+    try {
+      const createBlogInfoRes = await createBlogInfo(localStorage.token, {
         name: blogNameValue.trim(), // 曾经引发bug，传入后端时需要注意首尾空行
         title: titleValue.trim(),
         text: textValue.trim(),
         tag: tagsValue,
       })
-        .then((res) => {
-          if (res.code === 0) {
-            return postBlogFile(
-              localStorage.token,
-              topImgValue[0],
-              markdownValue[0],
-              blogNameValue.trim()
-            )
-          } else {
-            alert('处理Info时' + res.msg)
-            return Promise.reject()
-          }
-        })
-        .then(
-          (res) => {
-            if (res.code === 0) {
-              router.back()
-            } else {
-              alert('处理File时' + res.msg)
-            }
-            setIsProcessing({
-              text: '',
-              style: '',
-              disable: false,
-            })
-          },
-          (_) => {
-            router.back()
-            setIsProcessing({
-              text: '',
-              style: '',
-              disable: false,
-            })
-          }
-        )
+
+      if (createBlogInfoRes.code !== 0) {
+        alert('处理info时' + createBlogInfoRes.msg)
+        loadingDispatch({ type: 'done' })
+        return
+      }
+
+      const postBlogFileRes = await postBlogFile(
+        localStorage.token,
+        topImgValue[0],
+        markdownValue[0],
+        blogNameValue.trim()
+      )
+
+      if (postBlogFileRes.code !== 0) {
+        alert('处理file时' + postBlogFileRes.msg)
+        loadingDispatch({ type: 'done' })
+        return
+      }
+
+      router.back()
+    } catch (error) {
+      alert('请求时错误' + error)
+      loadingDispatch({ type: 'done' })
+      return
     }
   }
 
@@ -252,11 +272,11 @@ const BlogCreate = () => {
               </div>
             </div>
             <input
-              className={'input-bnt ' + isProcessing.style}
+              className={'input-bnt ' + loadingState.style}
               type="button"
-              value={isProcessing.disable ? isProcessing.text : '完成'}
+              value={loadingState.disable ? loadingState.text : '完成'}
               onClick={handleSubmit}
-              disabled={isProcessing.disable}
+              disabled={loadingState.disable}
             />
           </form>
         </div>
