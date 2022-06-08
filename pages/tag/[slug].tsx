@@ -1,12 +1,12 @@
 import BlogList from '../../components/blog-list'
 import { getBlogUseTag } from '../../lib/api'
-import { ResponseType, BlogListType } from '../../types/post'
+import { ResponseBody, BlogListType } from '../../types/request'
 import CheckNet from '../../components/check-net'
 import Head from 'next/head'
 import PageTitle from '../../components/page-title'
 
 type Props = {
-  tagList: ResponseType<BlogListType>
+  tagList: ResponseBody<BlogListType>
   slug: string
 }
 

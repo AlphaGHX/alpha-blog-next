@@ -1,6 +1,6 @@
 import parseTime from '../lib/parseTime'
 import { REMOTE } from '../lib/constants'
-import { ResponseType, BlogInfoType } from '../types/post'
+import { ResponseBody, BlogInfoType } from '../types/request'
 import Image from 'next/image'
 import router from 'next/router'
 import { faClock, faEye } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +10,7 @@ import gsap from 'gsap'
 
 type Props = {
   rawHtml: string
-  blogInfo: ResponseType<BlogInfoType>
+  blogInfo: ResponseBody<BlogInfoType>
 }
 
 const Blog = ({ rawHtml, blogInfo }: Props) => {

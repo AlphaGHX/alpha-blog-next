@@ -1,5 +1,5 @@
 import { getBlogList } from '../../lib/api'
-import { BlogListType, ResponseType } from '../../types/post'
+import { BlogListType, ResponseBody } from '../../types/request'
 import Head from 'next/head'
 import BlogListEx from '../../components/blog-list-ex'
 import VerifyLocalToken from '../../components/verify-local-token'
@@ -7,7 +7,7 @@ import CheckNet from '../../components/check-net'
 import PageTitle from '../../components/page-title'
 
 type Props = {
-  blogList: ResponseType<BlogListType>
+  blogList: ResponseBody<BlogListType>
 }
 
 const AdminPage = ({ blogList }: Props) => {
@@ -29,7 +29,7 @@ const AdminPage = ({ blogList }: Props) => {
 export default AdminPage
 
 export const getServerSideProps = async () => {
-  const blogList: ResponseType<BlogListType> = await getBlogList()
+  const blogList: ResponseBody<BlogListType> = await getBlogList()
 
   return {
     props: { blogList },

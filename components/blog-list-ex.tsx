@@ -2,13 +2,14 @@ import Button from '../components/button'
 import {
   faCirclePlus,
   faArrowRightFromBracket,
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
-import { BlogListType, ResponseType } from '../types/post'
+import { BlogListType, ResponseBody } from '../types/request'
 import { useRouter } from 'next/router'
 import BlogListItem from './blog-list-item'
 
 type Props = {
-  blogList: ResponseType<BlogListType>
+  blogList: ResponseBody<BlogListType>
 }
 
 const BlogListEx = ({ blogList }: Props) => {
@@ -16,6 +17,10 @@ const BlogListEx = ({ blogList }: Props) => {
 
   const createBlog = () => {
     router.push('/admin/editor')
+  }
+
+  const editUser = () => {
+    router.push('/admin/edit-admin')
   }
 
   const editBlog = (blogName: string) => {
@@ -36,6 +41,13 @@ const BlogListEx = ({ blogList }: Props) => {
           className="mr-2 md:mr-6"
         >
           写个博客
+        </Button>
+        <Button
+          icon={{ icon: faUser, size: 'sm' }}
+          click={editUser}
+          className="mr-2 md:mr-6"
+        >
+          修改管理员信息
         </Button>
         <Button
           icon={{ icon: faArrowRightFromBracket, size: 'sm' }}

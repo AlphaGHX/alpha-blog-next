@@ -1,6 +1,6 @@
 import { REMOTE } from './constants'
-import { UserInfo } from '../types/post'
-import { PostBlogInfo, ResponseType } from '../types/post'
+import { UserInfo } from '../types/request'
+import { PostBlogInfo, ResponseBody } from '../types/request'
 
 const retError = (error: any): any => {
   return {
@@ -90,7 +90,7 @@ export const verifyUser = async (userInfo: UserInfo) => {
 
 export const verifyLocalToken = async () => {
   if (localStorage.token) {
-    let res: ResponseType<object> = await verifyToken(localStorage.token)
+    let res: ResponseBody<object> = await verifyToken(localStorage.token)
     if (res && res.code === 0) {
       return true
     } else {
@@ -215,6 +215,20 @@ export const getGitHubUserInfo = async (username: string) => {
     )
     const data = await response.json()
     return { code: 0, data, msg: 'Ok' }
+  } catch (error) {
+    return retError(error)
+  }
+}
+
+export const getAdminInfo = async () => {
+  var requestOptions: RequestInit = {
+    method: 'GET',
+    redirect: 'follow'
+  }
+
+  try {
+    let response = await fetch(REMOTE.GET_ADMIN_INFO, requestOptions)
+    return response.json()
   } catch (error) {
     return retError(error)
   }

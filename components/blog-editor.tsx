@@ -2,10 +2,10 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { delBlog, postBlogFile, postBlogInfo } from '../lib/api'
 import { REMOTE } from '../lib/constants'
-import { PostBlogInfo, ResponseType } from '../types/post'
+import { PostBlogInfo, ResponseBody } from '../types/request'
 
 type Props = {
-  blogInfo: ResponseType<PostBlogInfo>
+  blogInfo: ResponseBody<PostBlogInfo>
 }
 
 const BlogEditor = ({ blogInfo: blogInfo }: Props) => {

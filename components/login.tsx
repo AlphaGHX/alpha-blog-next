@@ -1,5 +1,5 @@
 import { useRef, memo } from 'react'
-import { UserInfo, ResponseType, Token } from '../types/post'
+import { UserInfo, ResponseBody, Token } from '../types/request'
 import { verifyUser } from '../lib/api'
 import { useRouter } from 'next/router'
 
@@ -18,7 +18,7 @@ const Login = () => {
       username: username.current?.value || '',
       password: password.current?.value || '',
     }
-    verifyUser(userInfo).then((res: ResponseType<Token>) => {
+    verifyUser(userInfo).then((res: ResponseBody<Token>) => {
       if (res.code === 0) {
         localStorage.token = res.data.token
         router.back()

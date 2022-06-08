@@ -1,13 +1,13 @@
 import Blog from '../../components/blog'
 import { getBlog, getBlogInfo } from '../../lib/api'
-import { ResponseType, BlogInfoType } from '../../types/post'
+import { ResponseBody, BlogInfoType } from '../../types/request'
 import markdownToHtml from '../../lib/markdown2Html'
 import Head from 'next/head'
 import CheckNet from '../../components/check-net'
 
 type Props = {
   rawHtml: string
-  blogInfo: ResponseType<BlogInfoType>
+  blogInfo: ResponseBody<BlogInfoType>
 }
 
 const Post = ({ rawHtml, blogInfo }: Props) => {

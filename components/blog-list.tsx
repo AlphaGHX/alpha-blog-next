@@ -1,11 +1,11 @@
-import { ResponseType, BlogListType } from '../types/post'
+import { ResponseBody, BlogListType } from '../types/request'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import gsap from 'gsap'
 import BlogListItem from './blog-list-item'
 
 type Props = {
-  blogList: ResponseType<BlogListType>
+  blogList: ResponseBody<BlogListType>
 }
 
 const BlogList = ({ blogList }: Props) => {

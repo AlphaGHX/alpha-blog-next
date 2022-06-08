@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
-import { ResponseType } from '../types/post'
+import { ResponseBody } from '../types/request'
 import ErrorPage from './error-page'
 
 type Props = {
-  data: ResponseType<any>
+  data: ResponseBody<any>
   children?: ReactNode
 }
 

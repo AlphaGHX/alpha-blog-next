@@ -1,5 +1,5 @@
 import { REMOTE } from '../lib/constants'
-import { BlogInfoType } from '../types/post'
+import { BlogInfoType } from '../types/request'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faEye } from '@fortawesome/free-solid-svg-icons'

@@ -236,9 +236,7 @@ const BlogCreate = () => {
                 />
                 <button
                   type="button"
-                  className="ml-5 w-full h-10 shadow-small font-bold
-                            duration-300 hover:shadow-base active:shadow-small
-                            rounded-full px-4"
+                  className="ml-5 input-bnt"
                   onClick={addTag}
                 >
                   添加

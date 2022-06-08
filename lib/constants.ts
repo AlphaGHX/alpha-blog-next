@@ -17,6 +17,8 @@ POST_BLOG_INFO:向后端推送博客信息
 POST_BLOG_FILE:向后端更新博客文件
 CREATE_BLOG_INFO:向后端创建博客文件（Img和Markdown）
 DEL_BLOG:删除指定博客
+GET_ADMIN_INFO:获取管理员信息
+GET_ADMIN_AVATAR:获取管理员头像
 */
 const DEV = {
   ROOT: 'http://localhost' + WEB_PORT + '/api/',
@@ -35,6 +37,8 @@ const DEV = {
   CREATE_BLOG_INFO:
     'http://localhost' + WEB_PORT + '/api/system/blog/createinfo',
   DEL_BLOG: 'http://localhost' + WEB_PORT + '/api/system/blog/del/',
+  GET_ADMIN_INFO: 'http://localhost' + WEB_PORT + '/api/system/get-admin-info',
+  GET_ADMIN_AVATAR: 'http://localhost' + WEB_PORT + '/api/system/get-admin-avatar'
 }
 
 const START = {
@@ -53,6 +57,8 @@ const START = {
   POST_BLOG_FILE: 'https://' + DOMAIN + '/system/blog/uploadfile',
   CREATE_BLOG_INFO: 'https://' + DOMAIN + '/system/blog/createinfo',
   DEL_BLOG: 'https://' + DOMAIN + '/system/blog/del/',
+  GET_ADMIN_INFO: 'https://' + DOMAIN + '/system/get-admin-info',
+  GET_ADMIN_AVATAR: 'https://' + DOMAIN + '/system/get-admin-avatar'
 }
 
 // 分别为生产环境和开发环境更换不同远端信息

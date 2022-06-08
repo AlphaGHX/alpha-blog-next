@@ -1,4 +1,4 @@
-export type ResponseType<T> = {
+export type ResponseBody<T> = {
   code: number
   data: T
   msg: string
@@ -29,4 +29,10 @@ export type PostBlogInfo = {
   title: string
   text: string
   tag: string[]
+}
+
+export type AdminInfo = {
+  nickname: string
+  describe: string
+  'my-links': Array<{ 'site-name': string, 'site-link': string }>
 }

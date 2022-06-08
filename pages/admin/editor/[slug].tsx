@@ -4,10 +4,10 @@ import CheckNet from '../../../components/check-net'
 import PageTitle from '../../../components/page-title'
 import VerifyLocalToken from '../../../components/verify-local-token'
 import { getBlogInfo } from '../../../lib/api'
-import { ResponseType, BlogInfoType } from '../../../types/post'
+import { ResponseBody, BlogInfoType } from '../../../types/request'
 
 type Props = {
-  blogInfo: ResponseType<BlogInfoType>
+  blogInfo: ResponseBody<BlogInfoType>
 }
 
 const EditBlog = ({ blogInfo }: Props) => {
@@ -33,7 +33,7 @@ type Params = {
 }
 
 export const getServerSideProps = async ({ params: { slug } }: Params) => {
-  const blogInfo: ResponseType<BlogInfoType> = await getBlogInfo(slug)
+  const blogInfo: ResponseBody<BlogInfoType> = await getBlogInfo(slug)
 
   return {
     props: { blogInfo },
