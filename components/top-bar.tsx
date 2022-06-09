@@ -100,10 +100,10 @@ const TopBar = () => {
   }, [])
 
   return (
-    <div className="fixed w-full duration-300 z-50">
+    <div className="fixed w-full duration-base z-50">
       <div
         className="flex flex-row flex-wrap justify-between items-center
-                  backdrop-blur-base shadow-base p-2 md:p-6 duration-300"
+                  backdrop-blur-base shadow-base p-2 md:p-6 duration-base"
       >
         <h1 className="font-main-text text-2xl md:text-3xl font-bold">
           Alpha Blog.

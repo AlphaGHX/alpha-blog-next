@@ -37,7 +37,7 @@ const BlogListItem = ({ post, onTagClick, onTitleClick }: props) => {
             src={REMOTE.LIST_IMG + post.name}
             alt="blog-item-img"
             objectFit="cover"
-            className={scale + ' duration-300'}
+            className={scale + ' duration-base'}
             priority
           ></Image>
         </a>

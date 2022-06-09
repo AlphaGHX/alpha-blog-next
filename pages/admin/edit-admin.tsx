@@ -15,7 +15,7 @@ const EditAdmin = ({ adminInfo }: Props) => {
       <Head>
         <title>EditAdmin - AlphaBlog</title>
       </Head>
-      <PageTitle>管理员编辑。</PageTitle>
+      <PageTitle>管理员信息修改。</PageTitle>
       <CheckNet data={adminInfo}>
         <MyCardEditor adminInfo={adminInfo}></MyCardEditor>
       </CheckNet>

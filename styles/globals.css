@@ -17,29 +17,42 @@
   /* Input */
   .input-base {
     @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full border-2 border-slate-300
-  focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 indent-4 outline-none duration-300 font-bold;
+  focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 indent-4 outline-none duration-base font-bold;
   }
   .input-bnt {
     @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full shadow-small
-    focus:shadow-base duration-300 font-bold cursor-pointer hover:shadow-base active:shadow-small;
+    focus:shadow-base duration-base font-bold cursor-pointer hover:shadow-base active:shadow-small;
   }
   .input-texta {
-    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-36 rounded-3xl border-2 border-slate-300
-  focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 outline-none font-bold p-3 duration-300;
+    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-36 rounded-base border-2 border-slate-300
+  focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 outline-none font-bold p-3 duration-base;
   }
 
   /* Card */
   .card {
-    @apply text-main-text dark:text-main-text-dark shadow-base rounded-3xl overflow-hidden
+    @apply text-main-text dark:text-main-text-dark shadow-base rounded-base overflow-hidden;
   }
 
   /* backdrop-blur */
   .backdrop-blur-base {
-    @apply backdrop-blur bg-bg-blur dark:bg-bg-blur-dark text-main-text dark:text-main-text-dark
+    @apply backdrop-blur bg-bg-blur dark:bg-bg-blur-dark text-main-text dark:text-main-text-dark;
   }
 
   /* text-base */
   .text-color-base {
-    @apply text-main-text dark:text-main-text-dark
+    @apply text-main-text dark:text-main-text-dark;
+  }
+
+  /* layout */
+  .absolute-tc {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+  .rounded-base {
+    @apply rounded-3xl;
+  }
+
+  /* anima */
+  .duration-base {
+    @apply duration-300;
   }
 }

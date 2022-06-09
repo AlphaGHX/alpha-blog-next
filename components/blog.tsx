@@ -40,7 +40,7 @@ const Blog = ({ rawHtml, blogInfo }: Props) => {
             alt="blog-item-img"
             objectFit="cover"
           ></Image>
-          <div className="absolute bottom-0 px-2 sm:px-5 backdrop-blur-3xl w-full text-white bg-bg-blur-blogtitle duration-300">
+          <div className="absolute bottom-0 px-2 sm:px-5 backdrop-blur-3xl w-full text-white bg-bg-blur-blogtitle duration-base">
             <h1 className="text-2xl sm:text-3xl mt-2 sm:mt-5 mb-2">
               {blogInfo.data.title}
             </h1>

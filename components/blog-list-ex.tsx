@@ -2,7 +2,7 @@ import Button from '../components/button'
 import {
   faCirclePlus,
   faArrowRightFromBracket,
-  faUser
+  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { BlogListType, ResponseBody } from '../types/request'
 import { useRouter } from 'next/router'
@@ -47,7 +47,7 @@ const BlogListEx = ({ blogList }: Props) => {
           click={editUser}
           className="mr-2 md:mr-6"
         >
-          修改管理员信息
+          管理员信息修改
         </Button>
         <Button
           icon={{ icon: faArrowRightFromBracket, size: 'sm' }}

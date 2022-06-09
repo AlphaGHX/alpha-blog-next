@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useReducer, useRef, useState } from 'react'
 import { createBlogInfo, postBlogFile } from '../lib/api'
+import FileDropper from './file-dropper'
 
 type ACTIONTYPE = { type: 'loading' } | { type: 'done' }
 
@@ -37,9 +38,10 @@ const BlogCreate = () => {
     initialLoadingState
   )
 
+  let topImgValue: FileList
+  let markdownValue: FileList
+
   const blogName = useRef<HTMLInputElement>(null)
-  const markdown = useRef<HTMLInputElement>(null)
-  const topImg = useRef<HTMLInputElement>(null)
   const title = useRef<HTMLInputElement>(null)
   const tag = useRef<HTMLInputElement>(null)
 
@@ -59,9 +61,6 @@ const BlogCreate = () => {
     const blogNameValue = blogName.current?.value || ''
     const titleValue = title.current?.value || ''
     const textValue = text.current?.value || ''
-
-    const markdownValue = markdown.current?.files || new FileList()
-    const topImgValue = topImg.current?.files || new FileList()
 
     const tagsValue = tags
 
@@ -142,28 +141,6 @@ const BlogCreate = () => {
     setTages([...cTags])
   }
 
-  const handleChangeTopImg = (e: React.FormEvent<HTMLInputElement>) => {
-    if (topImgLabel.current?.innerText && e.currentTarget.files) {
-      if (e.currentTarget.files.length === 0) {
-        topImgLabel.current.innerText = '拖拽到此或选取文件'
-      } else {
-        topImgLabel.current.innerText =
-          '已选择:' + e.currentTarget.files[0].name
-      }
-    }
-  }
-
-  const handleChangeMarkdown = (e: React.FormEvent<HTMLInputElement>) => {
-    if (markdownLabel.current?.innerText && e.currentTarget.files) {
-      if (e.currentTarget.files.length === 0) {
-        markdownLabel.current.innerText = '拖拽到此或选取文件'
-      } else {
-        markdownLabel.current.innerText =
-          '已选择:' + e.currentTarget.files[0].name
-      }
-    }
-  }
-
   return (
     <>
       <div className="card">
@@ -174,101 +151,97 @@ const BlogCreate = () => {
               handleSubmit()
             }}
           >
-            <div>
-              <div className="ml-4 mb-1">ID(唯一，创建后不可变更)</div>
-              <input
-                className="input-base mb-5"
-                name="blogName"
-                ref={blogName}
-                type="text"
-                autoComplete="off"
-              />
-            </div>
-            <div>
-              <div className="ml-4 mb-1">标题</div>
-              <input
-                className="input-base mb-5"
-                name="title"
-                ref={title}
-                type="text"
-                autoComplete="off"
-              />
-            </div>
-            <div>
-              <div className="ml-4 mb-1">描述</div>
-              <textarea className="input-texta mb-5" name="text" ref={text} />
-            </div>
-            <div>
-              <div className="ml-4 mb-5">
-                标签：
-                {tags.length !== 0 ? (
-                  tags.map((v, i) => (
-                    <span
-                      className="text-xs py-0.5 px-2 mr-2 rounded-full
+            <div className="ml-4 mb-1">ID(唯一，创建后不可变更)</div>
+            <input
+              className="input-base mb-5"
+              name="blogName"
+              ref={blogName}
+              type="text"
+              autoComplete="off"
+            />
+
+            <div className="ml-4 mb-1">标题</div>
+            <input
+              className="input-base mb-5"
+              name="title"
+              ref={title}
+              type="text"
+              autoComplete="off"
+            />
+
+            <div className="ml-4 mb-1">描述</div>
+            <textarea className="input-texta mb-5" name="text" ref={text} />
+
+            <div className="ml-4 mb-5">
+              标签：
+              {tags.length !== 0 ? (
+                tags.map((v, i) => (
+                  <span
+                    className="text-xs py-0.5 px-2 mr-2 rounded-full
                                 shadow-main-small cursor-not-allowed
                               text-main-text dark:text-main-text-dark"
-                      key={i}
-                      onClick={(e) => {
-                        const tag = e.currentTarget.innerText
-                        removeTag(tag)
-                      }}
-                    >
-                      {v}
-                    </span>
-                  ))
-                ) : (
-                  <span>无</span>
-                )}
-              </div>
-              <div className="ml-4 mb-1">添加标签</div>
-              <div className="flex flex-row justify-between mb-5">
-                <input
-                  className="input-base w-3/4 shrink-0"
-                  name="tag"
-                  ref={tag}
-                  type="text"
-                  autoComplete="off"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      addTag()
-                    }
-                  }}
-                />
-                <button
-                  type="button"
-                  className="ml-5 input-bnt"
-                  onClick={addTag}
-                >
-                  添加
-                </button>
-              </div>
+                    key={i}
+                    onClick={(e) => {
+                      const tag = e.currentTarget.innerText
+                      removeTag(tag)
+                    }}
+                  >
+                    {v}
+                  </span>
+                ))
+              ) : (
+                <span>无</span>
+              )}
             </div>
-            <div>
-              <div className="ml-4 mb-1">顶部图片</div>
-              <div className="w-full py-10 text-center shadow-small relative mb-5 rounded-3xl overflow-hidden">
-                <div ref={topImgLabel}>拖拽到此或选取文件</div>
-                <input
-                  className="opacity-0 absolute w-full h-full top-0 left-0 z-10 cursor-pointer"
-                  name="topImg"
-                  ref={topImg}
-                  type="file"
-                  onChange={handleChangeTopImg}
-                />
-              </div>
+            <div className="ml-4 mb-1">添加标签</div>
+            <div className="flex flex-row justify-between mb-5">
+              <input
+                className="input-base w-3/4 shrink-0"
+                name="tag"
+                ref={tag}
+                type="text"
+                autoComplete="off"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    addTag()
+                  }
+                }}
+              />
+              <button type="button" className="ml-5 input-bnt" onClick={addTag}>
+                添加
+              </button>
             </div>
-            <div>
-              <div className="ml-4 mb-1">Markdown</div>
-              <div className="w-full py-10 text-center shadow-small relative mb-10 rounded-3xl overflow-hidden">
-                <div ref={markdownLabel}>拖拽到此或选取文件</div>
-                <input
-                  className="opacity-0 absolute w-full h-full top-0 left-0 z-10 cursor-pointer"
-                  name="topImg"
-                  ref={markdown}
-                  type="file"
-                  onChange={handleChangeMarkdown}
-                />
+
+            <div className="ml-4 mb-1">顶部图片</div>
+            <FileDropper
+              className="relative w-full shadow-small mb-5 rounded-base overflow-hidden"
+              onDrop={(files) => {
+                topImgValue = files
+                if (topImgLabel.current?.innerText) {
+                  topImgLabel.current.innerText = '已选择: ' + files[0].name
+                }
+              }}
+            >
+              <div ref={topImgLabel} className="py-10 text-center">
+                拖拽到此或选取文件
               </div>
-            </div>
+            </FileDropper>
+
+            <div className="ml-4 mb-1">Markdown</div>
+            <FileDropper
+              className="relative w-full shadow-small mb-5 rounded-base overflow-hidden"
+              onDrop={(files) => {
+                markdownValue = files
+                if (markdownLabel.current?.innerText) {
+                  markdownLabel.current.innerText = '已选择: ' + files[0].name
+                }
+              }}
+            >
+              <div ref={markdownLabel} className="py-10 text-center">
+                拖拽到此或选取文件
+              </div>
+            </FileDropper>
+
             <input
               className={'input-bnt ' + loadingState.style}
               type="button"

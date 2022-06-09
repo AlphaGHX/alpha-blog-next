@@ -244,7 +244,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
                 <button
                   type="button"
                   className="ml-5 w-full h-10 shadow-small font-bold
-                            duration-300 hover:shadow-base active:shadow-small
+                            duration-base hover:shadow-base active:shadow-small
                             rounded-full px-4"
                   onClick={addTag}
                 >
@@ -263,7 +263,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
                   获取原图片
                 </a>
               </div>
-              <div className="w-full py-10 text-center shadow-small relative mb-5 rounded-3xl overflow-hidden">
+              <div className="w-full py-10 text-center shadow-small relative mb-5 rounded-base overflow-hidden">
                 <div ref={topImgLabel}>拖拽到此或选取文件</div>
                 <input
                   className="opacity-0 absolute w-full h-full top-0 left-0 z-10 cursor-pointer"
@@ -285,7 +285,7 @@ const BlogEditor = ({ blogInfo: blogInfo }: Props) => {
                   获取原Markdown
                 </a>
               </div>
-              <div className="w-full py-10 text-center shadow-small relative mb-10 rounded-3xl overflow-hidden">
+              <div className="w-full py-10 text-center shadow-small relative mb-10 rounded-base overflow-hidden">
                 <div ref={markdownLabel}>拖拽到此或选取文件</div>
                 <input
                   className="opacity-0 absolute w-full h-full top-0 left-0 z-10 cursor-pointer"
