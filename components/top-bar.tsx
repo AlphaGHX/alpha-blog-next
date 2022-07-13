@@ -109,22 +109,28 @@ const TopBar = () => {
           Alpha Blog.
         </h1>
         <div className="felx-row flex-wrap justify-end">
-          <Button
-            className="ml-2 md:ml-6"
-            icon={{ icon: faHouseChimney, size: 'sm' }}
-            click={routerPush}
-            clickProps={['/']}
-          >
-            主页
-          </Button>
-          <Button
-            className="ml-2 md:ml-6"
-            icon={{ icon: faHeart, size: 'sm' }}
-            click={routerPush}
-            clickProps={['/blog']}
-          >
-            博客
-          </Button>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/" onClick={(e) => e.preventDefault()}>
+            <Button
+              className="ml-2 md:ml-6"
+              icon={{ icon: faHouseChimney, size: 'sm' }}
+              click={routerPush}
+              clickProps={['/']}
+            >
+              主页
+            </Button>
+          </a>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/blog" onClick={(e) => e.preventDefault()}>
+            <Button
+              className="ml-2 md:ml-6"
+              icon={{ icon: faHeart, size: 'sm' }}
+              click={routerPush}
+              clickProps={['/blog']}
+            >
+              博客
+            </Button>
+          </a>
           <Button
             className="ml-2 md:ml-6"
             icon={{ icon: darkState.icon, size: 'sm' }}

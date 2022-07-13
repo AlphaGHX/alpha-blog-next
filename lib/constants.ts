@@ -1,9 +1,3 @@
-//域名绑定
-const DOMAIN = 'blog.lolizzz.com'
-//后端端口绑定
-const BACKEND_PORT = ':12900'
-//前端端口绑定
-const WEB_PORT = ':3000'
 /*
 ROOT:服务器IP/域名
 LIST:所有博客的列表
@@ -20,45 +14,52 @@ DEL_BLOG:删除指定博客
 GET_ADMIN_INFO:获取管理员信息
 GET_ADMIN_AVATAR:获取管理员头像
 */
-const DEV = {
-  ROOT: 'http://localhost' + WEB_PORT + '/api/',
-  LIST: 'http://localhost' + WEB_PORT + '/api/system/list',
-  LIST_IMG: 'http://localhost' + WEB_PORT + '/api/system/list/img/',
-  BLOG: 'http://localhost' + WEB_PORT + '/api/system/blog/',
-  BLOG_INFO: 'http://localhost' + WEB_PORT + '/api/system/blog-info/',
-  TAG: 'http://localhost' + WEB_PORT + '/api/system/tag/',
 
-  LIST_IMG_EX: 'http://localhost' + WEB_PORT + '/api/system/list/img/',
-  BLOG_EX: 'http://localhost' + WEB_PORT + '/api/system/blog/',
-  VERIFY_TOKEN: 'http://localhost' + WEB_PORT + '/api/system/token-verify',
-  VERIFY_USER: 'http://localhost' + WEB_PORT + '/api/system/user-verify',
-  POST_BLOG_INFO: 'http://localhost' + WEB_PORT + '/api/system/blog/uploadinfo',
-  POST_BLOG_FILE: 'http://localhost' + WEB_PORT + '/api/system/blog/uploadfile',
-  CREATE_BLOG_INFO:
-    'http://localhost' + WEB_PORT + '/api/system/blog/createinfo',
-  DEL_BLOG: 'http://localhost' + WEB_PORT + '/api/system/blog/del/',
-  GET_ADMIN_INFO: 'http://localhost' + WEB_PORT + '/api/system/get-admin-info',
-  GET_ADMIN_AVATAR: 'http://localhost' + WEB_PORT + '/api/system/get-admin-avatar'
+// 开发环境下的 URL
+const DEV_URL = 'http://localhost:3000'
+
+// 生产环境下的 URL
+const START_URL = 'https://blog.lolizzz.com'
+const START_BACK_URL = 'http://blog.lolizzz.com:12900'
+
+const DEV = {
+  ROOT: DEV_URL + '/api/',
+  LIST: DEV_URL + '/api/system/list',
+  LIST_IMG: DEV_URL + '/api/system/list/img/',
+  BLOG: DEV_URL + '/api/system/blog/',
+  BLOG_INFO: DEV_URL + '/api/system/blog-info/',
+  TAG: DEV_URL + '/api/system/tag/',
+
+  LIST_IMG_EX: DEV_URL + '/api/system/list/img/',
+  BLOG_EX: DEV_URL + '/api/system/blog/',
+  VERIFY_TOKEN: DEV_URL + '/api/system/token-verify',
+  VERIFY_USER: DEV_URL + '/api/system/user-verify',
+  POST_BLOG_INFO: DEV_URL + '/api/system/blog/uploadinfo',
+  POST_BLOG_FILE: DEV_URL + '/api/system/blog/uploadfile',
+  CREATE_BLOG_INFO: DEV_URL + '/api/system/blog/createinfo',
+  DEL_BLOG: DEV_URL + '/api/system/blog/del/',
+  GET_ADMIN_INFO: DEV_URL + '/api/system/get-admin-info',
+  GET_ADMIN_AVATAR: DEV_URL + '/api/system/get-admin-avatar'
 }
 
 const START = {
-  ROOT: 'http://localhost' + BACKEND_PORT + '/',
-  LIST: 'http://localhost' + BACKEND_PORT + '/system/list',
-  LIST_IMG: 'http://localhost' + BACKEND_PORT + '/system/list/img/',
-  BLOG: 'http://localhost' + BACKEND_PORT + '/system/blog/',
-  BLOG_INFO: 'http://localhost' + BACKEND_PORT + '/system/blog-info/',
-  TAG: 'http://localhost' + BACKEND_PORT + '/system/tag/',
+  ROOT: START_BACK_URL + '/',
+  LIST: START_BACK_URL + '/system/list',
+  LIST_IMG: START_BACK_URL + '/system/list/img/',
+  BLOG: START_BACK_URL + '/system/blog/',
+  BLOG_INFO: START_BACK_URL + '/system/blog-info/',
+  TAG: START_BACK_URL + '/system/tag/',
 
-  LIST_IMG_EX: 'https://' + DOMAIN + '/system/list/img/',
-  BLOG_EX: 'https://' + DOMAIN + '/system/blog/',
-  VERIFY_TOKEN: 'https://' + DOMAIN + '/system/token-verify',
-  VERIFY_USER: 'https://' + DOMAIN + '/system/user-verify',
-  POST_BLOG_INFO: 'https://' + DOMAIN + '/system/blog/uploadinfo',
-  POST_BLOG_FILE: 'https://' + DOMAIN + '/system/blog/uploadfile',
-  CREATE_BLOG_INFO: 'https://' + DOMAIN + '/system/blog/createinfo',
-  DEL_BLOG: 'https://' + DOMAIN + '/system/blog/del/',
-  GET_ADMIN_INFO: 'https://' + DOMAIN + '/system/get-admin-info',
-  GET_ADMIN_AVATAR: 'https://' + DOMAIN + '/system/get-admin-avatar'
+  LIST_IMG_EX: START_URL + '/system/list/img/',
+  BLOG_EX: START_URL + '/system/blog/',
+  VERIFY_TOKEN: START_URL + '/system/token-verify',
+  VERIFY_USER: START_URL + '/system/user-verify',
+  POST_BLOG_INFO: START_URL + '/system/blog/uploadinfo',
+  POST_BLOG_FILE: START_URL + '/system/blog/uploadfile',
+  CREATE_BLOG_INFO: START_URL + '/system/blog/createinfo',
+  DEL_BLOG: START_URL + '/system/blog/del/',
+  GET_ADMIN_INFO: START_URL + '/system/get-admin-info',
+  GET_ADMIN_AVATAR: START_URL + '/system/get-admin-avatar'
 }
 
 // 分别为生产环境和开发环境更换不同远端信息
