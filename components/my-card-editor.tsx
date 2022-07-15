@@ -27,39 +27,39 @@ const MyCardEditor = ({ adminInfo }: Props) => {
               handleSubmit()
             }}
           >
-            <div>
-              <div className="flex justify-center items-center">
-                <FileDropper
-                  className="relative h-20 w-20"
-                  onDrop={(files: FileList) => {
-                    setImageUrl(URL.createObjectURL(files[0]))
-                  }}
-                  onEnter={() => {
-                    setImageHoverStyle(' opacity-100 ')
-                  }}
-                  onLeave={() => {
-                    setImageHoverStyle(' opacity-0 ')
-                  }}
+            <div className="flex justify-center items-center">
+              <FileDropper
+                className="relative h-20 w-20"
+                onDrop={(files: FileList) => {
+                  setImageUrl(URL.createObjectURL(files[0]))
+                }}
+                onEnter={() => {
+                  setImageHoverStyle(' opacity-100 ')
+                }}
+                onLeave={() => {
+                  setImageHoverStyle(' opacity-0 ')
+                }}
+              >
+                <Image
+                  className="rounded-full"
+                  layout="fill"
+                  src={imageUrl}
+                  alt="admin-avatar"
+                  objectFit="cover"
+                  priority
+                ></Image>
+                <div
+                  className={
+                    'absolute-center rounded-full backdrop-blur-base px-[6px] text-sm shadow-base duration-base' +
+                    imageHoverStyle
+                  }
                 >
-                  <Image
-                    className="rounded-full"
-                    layout="fill"
-                    src={imageUrl}
-                    alt="admin-avatar"
-                    objectFit="cover"
-                    priority
-                  ></Image>
-                  <div
-                    className={
-                      'absolute-tc rounded-full backdrop-blur-base px-[6px] text-sm shadow-base duration-base' +
-                      imageHoverStyle
-                    }
-                  >
-                    修改
-                  </div>
-                </FileDropper>
-              </div>
+                  修改
+                </div>
+              </FileDropper>
             </div>
+
+            <div className="text-center">{adminInfo.data.nickname}</div>
           </form>
         </div>
       </div>

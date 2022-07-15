@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  /* BoxShadow */
+  /* shadow */
   .shadow-small {
     @apply shadow-main-small shadow-main-shadow dark:shadow-main-shadow-dark;
   }
@@ -14,7 +14,7 @@
     @apply shadow-main-big shadow-main-shadow dark:shadow-main-shadow-dark;
   }
 
-  /* Input */
+  /* input */
   .input-base {
     @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-10 rounded-full border-2 border-slate-300
   focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 indent-4 outline-none duration-base font-bold;
@@ -27,8 +27,12 @@
     @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-36 rounded-base border-2 border-slate-300
   focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 outline-none font-bold p-3 duration-base;
   }
+  .inpute-droparea {
+    @apply w-full bg-bg-blur dark:bg-bg-blur-dark h-24 rounded-base border-2 border-slate-300
+  focus:border-slate-600 dark:border-slate-600 dark:focus:border-slate-400 duration-base;
+  }
 
-  /* Card */
+  /* card */
   .card {
     @apply text-main-text dark:text-main-text-dark shadow-base rounded-base overflow-hidden;
   }
@@ -38,13 +42,16 @@
     @apply backdrop-blur bg-bg-blur dark:bg-bg-blur-dark text-main-text dark:text-main-text-dark;
   }
 
-  /* text-base */
+  /* text */
   .text-color-base {
     @apply text-main-text dark:text-main-text-dark;
   }
 
   /* layout */
-  .absolute-tc {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+  .absolute-center {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
   }
   .rounded-base {

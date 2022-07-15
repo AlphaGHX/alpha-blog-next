@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useReducer, useRef, useState } from 'react'
 import { createBlogInfo, postBlogFile } from '../lib/api'
 import FileDropper from './file-dropper'
+import Input from './form-components/input'
 
 type ACTIONTYPE = { type: 'loading' } | { type: 'done' }
 
@@ -11,7 +12,10 @@ const initialLoadingState = {
   disable: false,
 }
 
-function loadingReducer(state: typeof initialLoadingState, action: ACTIONTYPE) {
+const loadingReducer = (
+  state: typeof initialLoadingState,
+  action: ACTIONTYPE
+) => {
   switch (action.type) {
     case 'loading':
       return {
@@ -151,23 +155,9 @@ const BlogCreate = () => {
               handleSubmit()
             }}
           >
-            <div className="ml-4 mb-1">ID(唯一，创建后不可变更)</div>
-            <input
-              className="input-base mb-5"
-              name="blogName"
-              ref={blogName}
-              type="text"
-              autoComplete="off"
-            />
+            <Input title="ID(唯一，将作为路由)" ref={blogName} />
 
-            <div className="ml-4 mb-1">标题</div>
-            <input
-              className="input-base mb-5"
-              name="title"
-              ref={title}
-              type="text"
-              autoComplete="off"
-            />
+            <Input title="标题" ref={title} />
 
             <div className="ml-4 mb-1">描述</div>
             <textarea className="input-texta mb-5" name="text" ref={text} />
@@ -201,7 +191,7 @@ const BlogCreate = () => {
                 ref={tag}
                 type="text"
                 autoComplete="off"
-                onKeyDown={(e) => {
+                onKeyUp={(e) => {
                   if (e.key === 'Enter') {
                     addTag()
                   }
@@ -214,7 +204,7 @@ const BlogCreate = () => {
 
             <div className="ml-4 mb-1">顶部图片</div>
             <FileDropper
-              className="relative w-full shadow-small mb-5 rounded-base overflow-hidden"
+              className="relative inpute-droparea mb-5"
               onDrop={(files) => {
                 topImgValue = files
                 if (topImgLabel.current?.innerText) {
@@ -222,22 +212,23 @@ const BlogCreate = () => {
                 }
               }}
             >
-              <div ref={topImgLabel} className="py-10 text-center">
+              <div ref={topImgLabel} className="absolute-center">
                 拖拽到此或选取文件
               </div>
             </FileDropper>
 
             <div className="ml-4 mb-1">Markdown</div>
             <FileDropper
-              className="relative w-full shadow-small mb-5 rounded-base overflow-hidden"
+              className="relative inpute-droparea mb-5"
               onDrop={(files) => {
                 markdownValue = files
                 if (markdownLabel.current?.innerText) {
                   markdownLabel.current.innerText = '已选择: ' + files[0].name
                 }
               }}
+              onEnter={() => {}}
             >
-              <div ref={markdownLabel} className="py-10 text-center">
+              <div ref={markdownLabel} className="absolute-center">
                 拖拽到此或选取文件
               </div>
             </FileDropper>
