@@ -2,7 +2,6 @@
   "name": "alpha-blog-next",
   "private": true,
   "scripts": {
-    "proxy": "node server.js",
     "dev": "next dev",
     "build": "next build && next start",
     "start": "next start",
@@ -14,7 +13,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
-    "express": "^4.17.3",
     "gsap": "^3.9.1",
     "highlight.js": "^11.4.0",
     "http-proxy-middleware": "^2.0.3",

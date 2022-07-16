@@ -15,53 +15,48 @@ GET_ADMIN_INFO:获取管理员信息
 GET_ADMIN_AVATAR:获取管理员头像
 */
 
-// 开发环境下的 URL
-const DEV_URL = 'http://localhost:3000'
+const DEVELOPMENT_REQUEST = {
+  ROOT: `${process.env.BACKEND_URL}/`,
+  LIST: `${process.env.BACKEND_URL}/system/list`,
+  LIST_IMG: `${process.env.BACKEND_URL}/system/list/img/`,
+  BLOG: `${process.env.BACKEND_URL}/system/blog/`,
+  BLOG_INFO: `${process.env.BACKEND_URL}/system/blog-info/`,
+  TAG: `${process.env.BACKEND_URL}/system/tag/`,
 
-// 生产环境下的 URL
-const START_URL = 'https://blog.lolizzz.com'
-const START_BACK_URL = 'http://blog.lolizzz.com:12900'
-
-const DEV = {
-  ROOT: DEV_URL + '/api/',
-  LIST: DEV_URL + '/api/system/list',
-  LIST_IMG: DEV_URL + '/api/system/list/img/',
-  BLOG: DEV_URL + '/api/system/blog/',
-  BLOG_INFO: DEV_URL + '/api/system/blog-info/',
-  TAG: DEV_URL + '/api/system/tag/',
-
-  LIST_IMG_EX: DEV_URL + '/api/system/list/img/',
-  BLOG_EX: DEV_URL + '/api/system/blog/',
-  VERIFY_TOKEN: DEV_URL + '/api/system/token-verify',
-  VERIFY_USER: DEV_URL + '/api/system/user-verify',
-  POST_BLOG_INFO: DEV_URL + '/api/system/blog/uploadinfo',
-  POST_BLOG_FILE: DEV_URL + '/api/system/blog/uploadfile',
-  CREATE_BLOG_INFO: DEV_URL + '/api/system/blog/createinfo',
-  DEL_BLOG: DEV_URL + '/api/system/blog/del/',
-  GET_ADMIN_INFO: DEV_URL + '/api/system/get-admin-info',
-  GET_ADMIN_AVATAR: DEV_URL + '/api/system/get-admin-avatar'
+  // 使用 next.js 的 rewrites 处理跨域问题
+  LIST_IMG_EX: '/api/system/list/img/',
+  BLOG_EX: '/api/system/blog/',
+  VERIFY_TOKEN: '/api/system/token-verify',
+  VERIFY_USER: '/api/system/user-verify',
+  POST_BLOG_INFO: '/api/system/blog/uploadinfo',
+  POST_BLOG_FILE: '/api/system/blog/uploadfile',
+  CREATE_BLOG_INFO: '/api/system/blog/createinfo',
+  DEL_BLOG: '/api/system/blog/del/',
+  GET_ADMIN_INFO: '/api/system/get-admin-info',
+  GET_ADMIN_AVATAR: '/api/system/get-admin-avatar'
 }
 
-const START = {
-  ROOT: START_BACK_URL + '/',
-  LIST: START_BACK_URL + '/system/list',
-  LIST_IMG: START_BACK_URL + '/system/list/img/',
-  BLOG: START_BACK_URL + '/system/blog/',
-  BLOG_INFO: START_BACK_URL + '/system/blog-info/',
-  TAG: START_BACK_URL + '/system/tag/',
+const PRODUCTION_REQUEST = {
+  ROOT: `${process.env.BACKEND_URL}/`,
+  LIST: `${process.env.BACKEND_URL}/system/list`,
+  LIST_IMG: `${process.env.BACKEND_URL}/system/list/img/`,
+  BLOG: `${process.env.BACKEND_URL}/system/blog/`,
+  BLOG_INFO: `${process.env.BACKEND_URL}/system/blog-info/`,
+  TAG: `${process.env.BACKEND_URL}/system/tag/`,
 
-  LIST_IMG_EX: START_URL + '/system/list/img/',
-  BLOG_EX: START_URL + '/system/blog/',
-  VERIFY_TOKEN: START_URL + '/system/token-verify',
-  VERIFY_USER: START_URL + '/system/user-verify',
-  POST_BLOG_INFO: START_URL + '/system/blog/uploadinfo',
-  POST_BLOG_FILE: START_URL + '/system/blog/uploadfile',
-  CREATE_BLOG_INFO: START_URL + '/system/blog/createinfo',
-  DEL_BLOG: START_URL + '/system/blog/del/',
-  GET_ADMIN_INFO: START_URL + '/system/get-admin-info',
-  GET_ADMIN_AVATAR: START_URL + '/system/get-admin-avatar'
+  // 使用 nginx 的反向代理处理跨域问题
+  LIST_IMG_EX: '/system/list/img/',
+  BLOG_EX: '/system/blog/',
+  VERIFY_TOKEN: '/system/token-verify',
+  VERIFY_USER: '/system/user-verify',
+  POST_BLOG_INFO: '/system/blog/uploadinfo',
+  POST_BLOG_FILE: '/system/blog/uploadfile',
+  CREATE_BLOG_INFO: '/system/blog/createinfo',
+  DEL_BLOG: '/system/blog/del/',
+  GET_ADMIN_INFO: '/system/get-admin-info',
+  GET_ADMIN_AVATAR: '/system/get-admin-avatar'
 }
 
 // 分别为生产环境和开发环境更换不同远端信息
 export const REMOTE =
-  process.env.NODE_ENV === 'production' ? { ...START } : { ...DEV }
+  process.env.NODE_ENV === 'production' ? { ...PRODUCTION_REQUEST } : { ...DEVELOPMENT_REQUEST }
